@@ -1,0 +1,42 @@
+#Questa parte di cosdice dice a python come cotruire il pacchetto
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+#In questa parte si inseriscono le informazioni del progetto
+#incluse le dipendenze che srvono per il pachhetto
+
+[project]
+name = "CMEPDA_Exam_repository"
+dynamic = ["version"]
+description = "Repositorio creato per l'esame di CMEPDA"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+authors = [
+  { name = "Andrea Simonelli" }
+  ]
+dependencies = [
+  "numpy",
+  ]
+
+# Le dipendenze opzionali sono elencate qui, raggruppate in sezioni logiche.
+# Di default (e.g. quando si esegue "pip install .") le dipendenze opzionali non sono
+# installate, ma sono insallate quando si esegue "pip install .[dev]"
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+    "pylint",
+    "matplotlib", #aggiungere le dipendenze solo per i test
+    "scipy"
+  ]
+docs = [
+    "sphinx",
+    "sphinxawesome-theme",
+    "sphinx-rtd-theme",
+    "sphinx-notes"
+  ]  
+#qui si configurano i tool
+[tool.hatch.version]
+path = "src/myproject/_version.py"
