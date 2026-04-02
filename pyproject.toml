@@ -39,4 +39,4 @@ docs = [
   ]  
 #qui si configurano i tool
 [tool.hatch.version]
-path = "src/myproject/_version.py"
+path = "src/CMEPDA_Exam_repository/_version.py"
