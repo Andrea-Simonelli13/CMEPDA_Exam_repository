@@ -34,8 +34,8 @@ dev = [
 docs = [
     "sphinx",
     "sphinxawesome-theme",
-    "sphinx-rtd-theme",
-    "sphinx-notes"
+    "sphinx-rtd-theme"#,
+    #"sphinx-notes"
   ]  
 #qui si configurano i tool
 [tool.hatch.version]
