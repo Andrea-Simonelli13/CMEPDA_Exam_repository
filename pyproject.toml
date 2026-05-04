@@ -12,7 +12,7 @@ dynamic = ["version"]
 description = "Repositorio creato per l'esame di CMEPDA"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.8, <3.12"
+requires-python = ">=3.8, <3.13"
 authors = [
   { name = "Andrea Simonelli" }
   ]
