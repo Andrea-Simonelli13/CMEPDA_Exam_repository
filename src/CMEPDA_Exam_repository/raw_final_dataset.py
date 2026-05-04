@@ -4,28 +4,29 @@ in anni di pubblicazione. Per ogni articolo si filtrano i metadati per ottenere 
 di arXiv e le keywords di HEP-INSPIRE che vengono salvate in un dizionario. I dizionari di ogni
 articolo sono inseriti in una lista e la lista è salvata in un file .json. 
 '''
-import os
 import json
 import time
 import requests
 #import shutil
+from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 
-def download_hep_ph_batches(batch_size, max_papers): #, save_folder='data/raw/hep_ph_json'
+def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='data/raw/hep_ph_json'
     '''Funzione che scarica e filtra gli articoli di HEP-INSPIRE.
     Argomenti
     ---------
     batch_size : numero
                  Questo è il numero di articoli per richiesta. Deve essere al massimo 1000,
-                 ma meglio sotto i 700.
+                 ma meglio sotto i 700. Valore di default 50.
     max_papers : numero
                  Questo è il numero di articoli scaricati da HEP-INPIRE per ogni anno.
-                 L'API di HEP-INSPIRE impone un massimo di 1000. Se max_papers non è un multiplo
+                 L'API di HEP-INSPIRE impone un massimo di 10000. Se max_papers non è un multiplo
                  di batch_size, il numero totale di articoli sarà il primo multiplo di batch_size
-                 più grande di max_papers. Si consiglia quindi di impostare un valore massimo intorno
-                 ai 9000.
+                 più grande di max_papers. Si consiglia quindi di impostare un valore massimo
+                 intorno ai 9000. Valore di default 5000.
     '''
 
-    save_folder = f"data/raw/raw_final_dataset.json"
+    save_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "raw/new_raw_dataset.json"
+    #save_folder = f"data/raw/{file_name}.json"
     #controlla se esistono le cartelle e le cancella compresi i file al loro interno
     #if os.path.exists(save_folder):
         #shutil.rmtree(save_folder)
@@ -60,16 +61,18 @@ def download_hep_ph_batches(batch_size, max_papers): #, save_folder='data/raw/he
             }
 
             #response = requests.get(url, params=params)
-            #Si fa un try-box per la richiesta HTTP. Viene inviata la richiesta, se non si riceve una risposta
-            #dall'API in 2 minuti viene sollevata un'exception. Nell'exception si aspetta 30s e si invia una seconde
-            #richiesta. Se alla terza richiesta non si è ricevuto risposta, si passa alla pagina successiva.
+            #Si fa un try-box per la richiesta HTTP. Viene inviata la richiesta,
+            #se non si riceve una risposta
+            #dall'API in 2 minuti viene sollevata un'exception.
+            #Nell'exception si aspetta 30s e si invia una seconda richiesta.
+            #Se alla terza richiesta non si è ricevuto risposta, si passa alla pagina successiva.
             success = False
             for tentativi in range(3):
                 try:
                     response = requests.get(url, params=params, timeout=120)
                     response.raise_for_status()
                     success = True
-                    break 
+                    break
                 except requests.exceptions.RequestException as e:
                     attesa = 30 * (tentativi + 1)
                     print(f"Errore al tentativo {tentativi + 1}: {e}")

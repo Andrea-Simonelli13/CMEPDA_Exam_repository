@@ -10,6 +10,8 @@ from sentence_transformers import SentenceTransformer
 from sklearn.cluster import AgglomerativeClustering, Birch
 from sklearn.preprocessing import normalize 
 from kneed import KneeLocator
+
+from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 #funzione per normalizzare il testo delle keywords, rende tutto minuscolo
 #toglie eventuali trattini e underscore, toglie spazi indesiderati
 def normalize_keywords(k):
@@ -24,7 +26,7 @@ def normalize_keywords(k):
     k = k.strip()
     return k
 
-def find_optimal_threshold(embeddings, start=1.05, stop=1.5, step=0.05, plot=True):
+def find_optimal_threshold(embeddings, start=0.5, stop=1.5, step=0.05, plot=True):
     """Funzione che trova un valore ottimale di distance_threshold per AgglomerativeClustering.
     
     Args:
@@ -41,10 +43,10 @@ def find_optimal_threshold(embeddings, start=1.05, stop=1.5, step=0.05, plot=Tru
     cluster_counts = []
 
     for t in thresholds:
-        print(f"valore distance_thrashold = {t}")
+        print(f"valore distance_thrashold = {t:.2f}")
         #clustering = AgglomerativeClustering(n_clusters=None, distance_threshold=t)
         clustering = Birch(
-        threshold=0.8,#0.5,
+        threshold=0.5,#0.5,
         branching_factor=50,
         n_clusters=AgglomerativeClustering(n_clusters=None, distance_threshold=t)
         )
@@ -81,10 +83,10 @@ def exploratory_data_analysis():
     la nuova lista che la mappa che permette di ottenere le keywords da quelle nuove.
     '''
     print("inizio funzione EDA")
-
+    json_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "raw/new_raw_dataset.json"
     # apre il file JSON in modalità lettura ("r")
     # encoding="utf-8" serve per leggere correttamente caratteri speciali
-    with open("data/raw/raw_final_dataset.json", "r", encoding="utf-8") as f:
+    with open(json_folder, "r", encoding="utf-8") as f: #"data/raw/raw_final_dataset.json"
     
         # json.load legge il file e lo converte in una struttura Python
         # nel tuo caso diventa una lista di dizionari (uno per ogni articolo)
@@ -163,7 +165,7 @@ def exploratory_data_analysis():
     embeddings_norm = normalize(embeddings)
 
     optimal_value = find_optimal_threshold(embeddings=embeddings_norm)
-    print(f"valore ottimale = {optimal_value}")
+    print(f"valore ottimale = {optimal_value:.2f}")
 
     #clustering
     #clustering = AgglomerativeClustering(
@@ -171,7 +173,7 @@ def exploratory_data_analysis():
         #distance_threshold=1.05#optimal_value#0.9  #0.4
     #)
     clustering = Birch(
-        threshold=0.8,#0.5,
+        threshold=0.5,#0.5,
         branching_factor=50,
         n_clusters=AgglomerativeClustering(n_clusters=None, distance_threshold=optimal_value)
         )
@@ -190,6 +192,7 @@ def exploratory_data_analysis():
         #if cluster not in cluster_to_keyword:
             #cluster_to_keyword[cluster] = keyword
     #print(f"cluster to keywords = {cluster_to_keyword}")
+
     #creo un contatore per i cluster
     cluster_counts = Counter()
     #per tutte le keyword che sono nel dizionario keyword: cluster aumento di 1 
@@ -297,10 +300,12 @@ def exploratory_data_analysis():
     data = [a for a in data if len(a["keywords"]) > 0]
     print(f"Numero di articoli rimasti = {len(data)}")
     #salvo la mappa e gli articoli con le nuove keywords
-    with open("data/processed/prova_keyword_map_optimal_clustering.json", "w", encoding="utf-8") as f:
+    map_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keywords_map.json"
+    with open(map_folder, "w", encoding="utf-8") as f: #"data/processed/final_keyword_map_optimal_clustering.json"
         json.dump(keyword_map, f, indent=2, ensure_ascii=False)
 
-    with open("data/processed/prova_articles_normalized_optimal_clustering.json", "w", encoding="utf-8") as f:
+    article_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
+    with open(article_folder, "w", encoding="utf-8") as f: #"data/processed/final_articles_normalized_optimal_clustering.json"
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":
