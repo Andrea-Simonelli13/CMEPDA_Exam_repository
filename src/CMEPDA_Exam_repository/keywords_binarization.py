@@ -1,3 +1,7 @@
+'''In questo script è contenuta la funzione che binarizza le liste di keywords
+degli articoli per poterle utilizzare come labels nell'allenamento dei modelli.
+'''
+
 import json
 from sklearn.preprocessing import MultiLabelBinarizer
 import numpy as np
@@ -23,7 +27,7 @@ def keywords_binarization():
     np.save(CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy", mlb.classes_)#"data/processed/final_keyword_binary_classes_optimal_clustering.npy"
     #with open("data/processed/dataset_binary_lables_bigger.json", "w", encoding="utf-8") as file:
         #json.dump(labels.tolist(), file, indent=2, ensure_ascii=False)
-    np.save(CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy", labels) #"data/processed/final_dataset_binary_lables_optimal_clustering.npy"   
+    np.save(CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy", labels) #"data/processed/final_dataset_binary_lables_optimal_clustering.npy"
 
 if __name__ == "__main__":
     keywords_binarization()

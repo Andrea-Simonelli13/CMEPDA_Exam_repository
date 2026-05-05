@@ -7,7 +7,7 @@ articolo sono inseriti in una lista e la lista è salvata in un file .json.
 import json
 import time
 import requests
-#import shutil
+
 from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 
 def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='data/raw/hep_ph_json'
@@ -86,7 +86,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
             if not success:
                 print(f"ATTENZIONE: Impossibile scaricare batch {page} dopo 3 tentativi. Salto al batch successivo.")
                 page += 1 # Salta questa pagina per non restare bloccato all'infinito
-                continue 
+                continue
             #if response.status_code != 200:
                 #print(f"Errore API: {response.status_code}")
                 #break
@@ -152,7 +152,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
     print(f"Download completato, tutti i batch salvati in {save_folder}")
 
 if __name__ == "__main__":
-    
+
     download_hep_ph_batches(
         batch_size=50, #100
         max_papers=5000, #9000

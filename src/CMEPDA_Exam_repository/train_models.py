@@ -1,19 +1,36 @@
-from tensorflow.keras.layers import TextVectorization, Embedding, Dense, GlobalAveragePooling1D, GlobalMaxPooling1D, Conv1D, LSTM, Dropout, Bidirectional, BatchNormalization, SpatialDropout1D, LayerNormalization
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
-import pickle
-import re 
-import sys
-import json
-import nltk
+'''In questo script sono contenute le funzioni utili per allenare i modelli
+sia sul dataset di default che su quello ottenuto dagli script exploratory_data_analysis.py
+e keywords_binarization.py.
+'''
+
 import gc
-import tensorflow
-#nltk.download('stopwords')
-from sklearn.model_selection import train_test_split
-import numpy as np
-import matplotlib.pyplot as plt
+import json
+import pickle
+import re
+import sys
 from collections import Counter
+
+import matplotlib.pyplot as plt
+import nltk
+import numpy as np
+import tensorflow
 from nltk.corpus import stopwords
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
+from tensorflow.keras.layers import (
+    BatchNormalization,
+    Bidirectional,
+    Conv1D,
+    Dense,
+    Dropout,
+    Embedding,
+    GlobalMaxPooling1D,
+    LayerNormalization,
+    LSTM,
+    SpatialDropout1D,
+    TextVectorization,
+)
+from tensorflow.keras.models import Sequential
 
 from CMEPDA_Exam_repository import (
     CMEPDA_EXAM_REPOSITORY_NEW_MODELS,
@@ -22,10 +39,18 @@ from CMEPDA_Exam_repository import (
     )
 
 def clean_text(text):
+    '''Funzione che pulisce il testo da caratteri
+    che possono confondere la rete.
+    Args:
+         text (string): testo da pulire
+    Returns:
+          " ".join(clean_words) (string): testo pulito
+    '''
     # 1. Rimuove il simbolo $ spesso utilizzato in LaTex
     #text = re.sub(r'\$.*?\$', '', text)
     text = text.replace('$', '')
-    # 2. Rimuove il simbolo \ che spesso è utilizzato in latex per i simboli come alpha, beta, tau etc.
+    # 2. Rimuove il simbolo \ che spesso è utilizzato in latex
+    # per i simboli come alpha, beta, tau etc.
     #text = re.sub(r'\\\w+', '', text)
     text = text.replace('\\', '')
     # 3. Rimuove tutto ciò che è tra due parentesi graffe comprese le graffe
@@ -39,7 +64,20 @@ def clean_text(text):
 
     return " ".join(clean_words)
 
-def data_splitting(texts_file, label_file, test_size=0.10, val_size=0.1111, random_state=42):
+def data_splitting(texts_file, label_file):
+    '''Funzione che divide il dataset (testi e labels) in dataset
+    di allenamento, validazione e test.
+    Args:
+         text_file (string): path al file degli articoli
+         label_file (string): path al file delle labels
+    Returns:
+         X_train (list): lista degli articoli per il training
+         X_val (list): lista degli articoli per la validazione
+         X_test (list): lista degli articoli per il test
+         y_train (nparray): array numpy delle labels per il training
+         y_val (nparray): array numpy delle labels per la validazione
+         y_test (nparray): array numpy delle labels per il test
+    '''
     #carica il dataset
     with open(texts_file, "r", encoding="utf-8") as f:
         data = json.load(f)
@@ -48,7 +86,7 @@ def data_splitting(texts_file, label_file, test_size=0.10, val_size=0.1111, rand
     #cancella dalla memoria il datset
     del data
     gc.collect()
-    #crea una lista con la lunghezza dei testi 
+    #crea una lista con la lunghezza dei testi
     #ed esegue il grafico della distribuzione della lunghezza dei testi
     lengths =[len(t.split()) for t in texts]
     freq = Counter(lengths)
@@ -76,6 +114,8 @@ def data_splitting(texts_file, label_file, test_size=0.10, val_size=0.1111, rand
 def plot_training_history_f1score(history):
     """
     Visualizza i grafici di Loss, Precision e Recall per monitorare il training.
+    Args:
+         history (history): history del training del modello.
     """
 
     plt.figure(figsize=(20, 5))
@@ -120,12 +160,17 @@ def plot_training_history_f1score(history):
     plt.show()
 
 def train_model_Dense(dataset="default"):
+    '''Funzione per allenare il modello Dense.
+    Args:
+         dataset (string): dataset da utilizzare, "default" utilizza il dataset di default
+                           "new" utilizza il dataset ottenuto dagli script.
+    '''
     nltk.download('stopwords')
     if dataset == "default":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
         print("Dataset di default selezionato")
-    
+
     if dataset == "new":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
@@ -218,7 +263,7 @@ def train_model_Dense(dataset="default"):
     #si graficano le funzione di loss e le metriche per ogni epoca
     plot_training_history_f1score(history=history)
 
-    print("--------------------------------------------TEST-------------------------------------------------")
+    print("--------------------------------------------TEST-----------------------------------")
     model_Dense.evaluate(X_test_vect, y_test)
 
     #si salva il vocabolario del vectorizer
@@ -231,18 +276,23 @@ def train_model_Dense(dataset="default"):
     #return model_Dense, vectorizer
 
 def train_model_CNN(dataset="default"):
+    '''Funzione per allenare il modello CNN.
+    Args:
+         dataset (string): dataset da utilizzare, "default" utilizza il dataset di default
+                           "new" utilizza il dataset ottenuto dagli script.
+    '''
     nltk.download('stopwords')
 
     if dataset == "default":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
         print("Dataset di default selezionato CNN")
-    
+
     if dataset == "new":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
         print("Dataset nuovo selezionato CNN")
-    
+
     #if dataset != "new" or dataset != "default":
         #help()
         #return
@@ -345,18 +395,23 @@ def train_model_CNN(dataset="default"):
     #return model_CNN, vectorizer
 
 def train_model_LSTM(dataset="default"):
+    '''Funzione per allenare il modello LSTM.
+    Args:
+         dataset (string): dataset da utilizzare, "default" utilizza il dataset di default
+                           "new" utilizza il dataset ottenuto dagli script.
+    '''
     nltk.download('stopwords')
 
     if dataset == "default":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
         print("Dataset di default selezionato LSTM")
-    
+
     if dataset == "new":
         path_json = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
         path_npy = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
         print("Dataset nuovo selezionato LSTM")
-    
+
     #if dataset != "new" or dataset != "default":
         #help()
         #return
@@ -457,7 +512,7 @@ def train_model_LSTM(dataset="default"):
     #return model_LSTM, vectorizer
 
 def help():
-    print(f'Per allenare il modello selezionare uno dei modelli a disposizione: Dense, CNN, LSTM')
+    print('Per allenare il modello selezionare uno dei modelli a disposizione: Dense, CNN, LSTM')
     print('Inoltre, è necessario scrivere default se si vuole usare i file di default,' \
     ' new se si vuole utilizzare il nuovo dataset.')
     print('Esempio: python train_models.py Dense new')

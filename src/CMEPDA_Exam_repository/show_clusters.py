@@ -1,9 +1,20 @@
+'''In questo script è contenuta la funzione che stampa il contenuto
+dei clusters ottenuti dal clustering e di quelli selezionati per
+l'allenamento.
+'''
+
 import json
 import numpy as np
 
 from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 
 def show_clusters_content(min_cluster=0, max_cluster=50):
+    '''Funzione che stampa il contenuto dei clusters e le keywords scelte
+    per l'allenamento.
+    Args:
+         min_cluster (int): numero del primo cluster da stampare
+         max_cluster (int): numero dell'ultimo cluster da stampare
+    '''
     #apro il file in cui c'è la mappa delle keyword e la estraggo
     with open(CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keywords_map.json", "r", encoding="utf-8") as f:
         map = json.load(f)

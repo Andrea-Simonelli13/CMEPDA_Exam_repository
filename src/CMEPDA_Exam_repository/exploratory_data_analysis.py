@@ -1,14 +1,19 @@
+'''In questo script sono contenute le funzioni necessarie per eseguire il clustering
+delle keywords. Molto spesso gli articoli hanno keywords simili, quindi si esegue
+il clustering per ridurne il numero.
+'''
+
 # importa il modulo json per leggere file JSON
 import json
-import numpy as np
-import matplotlib.pyplot as plt
 # importa Counter, una classe utile per contare quante volte appare ogni elemento
 from collections import Counter
+import numpy as np
+import matplotlib.pyplot as plt
 #importa sentence transformer per l'embedding delle keyword
 from sentence_transformers import SentenceTransformer
 #imposrta l'algoritmo di clustering
 from sklearn.cluster import AgglomerativeClustering, Birch
-from sklearn.preprocessing import normalize 
+from sklearn.preprocessing import normalize
 from kneed import KneeLocator
 
 from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
@@ -87,7 +92,7 @@ def exploratory_data_analysis():
     # apre il file JSON in modalità lettura ("r")
     # encoding="utf-8" serve per leggere correttamente caratteri speciali
     with open(json_folder, "r", encoding="utf-8") as f: #"data/raw/raw_final_dataset.json"
-    
+
         # json.load legge il file e lo converte in una struttura Python
         # nel tuo caso diventa una lista di dizionari (uno per ogni articolo)
         data = json.load(f)
@@ -102,7 +107,7 @@ def exploratory_data_analysis():
     all_keywords = []
 
     #per ogni articolo prende la lista delle keywords e applica
-    # la funzione per normalizzare il testo 
+    # la funzione per normalizzare il testo
     for article in data:
         article["keywords"] = [
             normalize_keywords(k) for k in article["keywords"]
@@ -112,7 +117,7 @@ def exploratory_data_analysis():
     # ogni elemento d è un dizionario del tipo:
     # {"text": "...", "keywords": [...]}
     for d in data:
-    
+
         # prende la lista di keyword dell'articolo
         # e la aggiunge alla lista globale all_keywords
         # extend aggiunge TUTTI gli elementi della lista
@@ -120,7 +125,7 @@ def exploratory_data_analysis():
 
     #fa il grafico della frequenza delle keywords
     counter_raw = Counter(all_keywords)
-    freqs = sorted(counter_raw.values(), reverse=True)
+    #freqs = sorted(counter_raw.values(), reverse=True)
 
     #plt.figure(figsize=(6,4))
     #plt.plot(freqs)
@@ -152,15 +157,18 @@ def exploratory_data_analysis():
 
     #min_freq = 50
     #valid_keywords = {k for k, v in counter.items() if v >= min_freq}
-    
+
     #embedding
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(unique_keywords, show_progress_bar=True)
     #l'embedding è eseguito guardando alla cosine similarity. keywords semanticamente simili vengono
-    #vettorizzate in modo tale che l'angolo tra i vettori sia piccolo. Questi vettori però hanno lunghezze diverse.
-    #Il clustering utilizzato dopo utilizza la distanza euclidea. quindi vettori che sarebbero vicini per la cosine similarity, 
-    #potrebbero risultare distanti usando la distanza euclidea (distanza tra le "punte" dei vettori). Di conseguenza è necessario
-    #normalizzare i vettori cosicchè avranno tutti lunghezza 1. Facendo questo vettori con un angolo tra loro compreso piccolo
+    #vettorizzate in modo tale che l'angolo tra i vettori sia piccolo.
+    #Questi vettori però hanno lunghezze diverse.
+    #Il clustering utilizzato dopo utilizza la distanza euclidea.
+    # quindi vettori che sarebbero vicini per la cosine similarity,
+    #potrebbero risultare distanti usando la distanza euclidea(distanza tra le "punte" dei vettori).
+    #Di conseguenza è necessario normalizzare i vettori cosicchè avranno tutti lunghezza 1.
+    # Facendo questo vettori con un angolo tra loro compreso piccolo
     #avranno una distanza euclidea piccola e viceversa.
     embeddings_norm = normalize(embeddings)
 
@@ -195,15 +203,17 @@ def exploratory_data_analysis():
 
     #creo un contatore per i cluster
     cluster_counts = Counter()
-    #per tutte le keyword che sono nel dizionario keyword: cluster aumento di 1 
+    #per tutte le keyword che sono nel dizionario keyword: cluster aumento di 1
     # il conteggio che corrisponde alla key (cluster, keyword)
     for k in all_keywords:
         if k in keyword_to_cluster:
             cluster_counts[(keyword_to_cluster[k], k)] += 1
     #creo un dizionario che associa al numero del cluster la keyword più frequente del cluster
     cluster_to_keyword = {}
-    #per ogni key del contatore ordinato in ordine decrescente si guarda se al cluster è già stata assegnata
-    #una keyword rappresentativa, se sì è quella più frequente, altrimenti si assegna quella che è stata trovata.
+    #per ogni key del contatore ordinato in ordine decrescente
+    #si guarda se al cluster è già stata assegnata
+    #una keyword rappresentativa, se sì è quella più frequente,
+    #altrimenti si assegna quella che è stata trovata.
     for (cluster, keyword), count in cluster_counts.most_common():
         if cluster not in cluster_to_keyword:
                 cluster_to_keyword[cluster] = keyword
@@ -221,7 +231,7 @@ def exploratory_data_analysis():
     counter = Counter(mapped_keywords)
 
     #fa il grafico della frequenza delle keywords dopo il clustering
-    freqs_clustered = sorted(counter.values(), reverse=True)
+    #freqs_clustered = sorted(counter.values(), reverse=True)
 
     #plt.figure(figsize=(6,4))
     #plt.plot(freqs_clustered)

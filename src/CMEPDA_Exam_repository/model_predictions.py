@@ -16,7 +16,9 @@
 #import matplotlib.pyplot as plt
 #from collections import Counter
 #from nltk.corpus import stopwords
-
+'''Questo script contiene le funzioni per ottenere le predizioni sui dati
+di test e su nuovi articoli.
+'''
 import gc
 import json
 import pickle
@@ -34,7 +36,7 @@ from tensorflow.keras.layers import (
     Bidirectional, BatchNormalization, Conv1D,
     Dropout, Dense, Embedding, GlobalMaxPooling1D,
     LSTM, LayerNormalization, SpatialDropout1D,
-    TextVectorization 
+    TextVectorization
 )
 from tensorflow.keras.models import Sequential
 
@@ -45,10 +47,18 @@ from CMEPDA_Exam_repository import (
 
 #-----------------------------Funzione che pulisce i testi-----------------------------------------
 def clean_text(text):
+    '''Funzione che pulisce il testo da caratteri
+    che possono confondere la rete.
+    Args:
+         text (string): testo da pulire
+    Returns:
+          " ".join(clean_words) (string): testo pulito
+    '''
     # 1. Rimuove il simbolo $ spesso utilizzato in LaTex
     #text = re.sub(r'\$.*?\$', '', text)
     text = text.replace('$', '')
-    # 2. Rimuove il simbolo \ che spesso è utilizzato in latex per i simboli come alpha, beta, tau etc.
+    # 2. Rimuove il simbolo \ che spesso è utilizzato in latex
+    # per i simboli come alpha, beta, tau etc.
     #text = re.sub(r'\\\w+', '', text)
     text = text.replace('\\', '')
     # 3. Rimuove tutto ciò che è tra due parentesi graffe comprese le graffe
@@ -61,18 +71,33 @@ def clean_text(text):
     clean_words = [w for w in words if w not in stop_words and len(w) > 1]
 
     return " ".join(clean_words)
-#-----------------Funzione che divide il dataset in training, vlidation e test-------------------------------
+#-----------------Funzione che divide il dataset in training, vlidation e test------------------
 def data_splitting_pred(texts_file, label_file):
+    '''Funzione che divide il dataset (testi e labels e kewords) in dataset
+    di allenamento, validazione e test.
+    Args:
+         text_file (string): path al file degli articoli
+         label_file (string): path al file delle labels
+    Returns:
+         X_train (list): lista degli articoli per il training
+         X_val (list): lista degli articoli per la validazione
+         X_test (list): lista degli articoli per il test
+         y_train (nparray): array numpy delle labels per il training
+         y_val (nparray): array numpy delle labels per la validazione
+         y_test (nparray): array numpy delle labels per il test
+         orig_train (list): lista delle keywords originali per il training
+         orig_val (list): lista delle keywords originali per la validazione
+         orig_test (list): lista delle keywords originali per il test
+    '''
     with open(texts_file, "r", encoding="utf-8") as f:
         data = json.load(f)
-    
+
     texts = [clean_text(article["text"]) for article in data]
     original_keywords = [article["keywords"] for article in data]
     del data
     gc.collect()
-    
+
     labels = np.load(label_file).astype(np.int8)
-    indices = [i for i in range(len(texts))]
 
     X_temp, X_test, y_temp, y_test, orig_temp, orig_test = train_test_split(texts, labels, original_keywords, test_size=0.10, random_state=42)
     del texts, labels
@@ -81,11 +106,14 @@ def data_splitting_pred(texts_file, label_file):
     del X_temp, y_temp
     gc.collect()
     return X_train, X_val, X_test, y_train, y_val, y_test, orig_train, orig_val, orig_test
-#-----------------------------Predizioni del modello Dense sui dati di test---------------------------
+#-----------------------------Predizioni del modello Dense sui dati di test----------
 def Dense_model_prediction():
+    '''Funzione che stampa le predizioni del modello Dense di default sui dati di test e
+    crea i grafici delle metriche in funzione della soglia decisionale.
+    '''
     nltk.download('stopwords')
     #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
-    print(f"Verranno utilizzati i file presenti nelle cartelle models e data/processed")
+    print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
     #weights_path = "models/model_Dense_v41_25.weights.h5"
     #vectorizer_path="models/vectorizer_Dense_v41_weights_25.pkl"
     #weights_path = "NN_models/model_Dense_v32_BC_02_25000.weights.h5"
@@ -160,7 +188,7 @@ def Dense_model_prediction():
         print(f"Keywords predette con soglia 0.3: {predicted_keywords[0][i]}")
         print(f"Keywords originali : {orig_test[i]}")
         print(' ')
-    
+
     len_original = [len(o) for o in orig_test]
     print(f"Media delle keywords degli articoli originali : {np.mean(len_original):.2f}")
 
@@ -215,6 +243,11 @@ def Dense_model_prediction():
     plt.show()
 #---------------------------------------------Predizioni del modello su nuovi testi------------------
 def Dense_model_new_prediction(new_text):
+    '''Funzione che stampa le predizioni del modello Dense di default sui testi
+    di nuovi articoli.
+    Args:
+         new_text (list): lista dei testi dei nuovi articoli
+    '''
     #if isinstance(new_text, str):
         #print(new_text)
     #else:
@@ -268,9 +301,12 @@ def Dense_model_new_prediction(new_text):
 
 
 def CNN_model_prediction():
+    '''Funzione che stampa le predizioni del modello CNN di default sui dati di test e
+    crea i grafici delle metriche in funzione della soglia decisionale.
+    '''
     nltk.download('stopwords')
     #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
-    print(f"Verranno utilizzati i file presenti nelle cartelle models e data/processed")
+    print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
     #weights_path = "models/model_CNN_v61.weights.h5"
     #vectorizer_path="models/vectorizer_CNN_v61.pkl"
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_CNN_v44_BC_02.weights.h5"
@@ -398,6 +434,11 @@ def CNN_model_prediction():
 
 #---------------------------------------------Predizioni del modello su nuovi testi------------------
 def CNN_model_new_prediction(new_text):
+    '''Funzione che stampa le predizioni del modello CNN di default sui testi
+    di nuovi articoli.
+    Args:
+         new_text (list): lista dei testi dei nuovi articoli
+    '''
     #if isinstance(new_text, str):
         #print(new_text)
     #else:
@@ -449,9 +490,12 @@ def CNN_model_new_prediction(new_text):
         print(predicted)
 
 def LSTM_model_prediction():
+    '''Funzione che stampa le predizioni del modello LSTM di default sui dati di test e
+    crea i grafici delle metriche in funzione della soglia decisionale.
+    '''
     nltk.download('stopwords')
     #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
-    print(f"Verranno utilizzati i file presenti nelle cartelle models e data/processed")
+    print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
     #weights_path = "models/model_LSTM_v81.weights.h5"
     #vectorizer_path="models/vectorizer_LSTM_v81.pkl"
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_LSTM_v81_BC_02.weights.h5"
@@ -579,6 +623,11 @@ def LSTM_model_prediction():
 
 #---------------------------------------------Predizioni del modello su nuovi testi------------------
 def LSTM_model_new_prediction(new_text):
+    '''Funzione che stampa le predizioni del modello LSTM di default sui testi
+    di nuovi articoli.
+    Args:
+         new_text (list): lista dei testi dei nuovi articoli
+    '''
     #if isinstance(new_text, str):
         #print(new_text)
     #else:
