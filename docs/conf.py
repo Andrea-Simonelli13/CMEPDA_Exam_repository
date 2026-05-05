@@ -14,7 +14,7 @@ copyright = '2026, Andrea Simonelli'
 author = 'Andrea Simonelli'
 release = __version__
 
-rst_prolog = f"""
+rst_prolog = """
 .. |Python| replace:: `Python <https://www.python.org/>`__
 .. |Sphinx| replace:: `Sphinx <https://www.sphinx-doc.org/en/master/>`__
 .. |numpy| replace:: `NumPy <https://numpy.org/>`__
