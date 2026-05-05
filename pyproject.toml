@@ -34,7 +34,9 @@ dev = [
     "pytest",
     "ruff",
     "pylint", #aggiungere le dipendenze solo per i test
-    "scipy"
+    "scipy",
+    "requests",
+    "unittest"
   ]
 docs = [
     "sphinx",
