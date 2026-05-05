@@ -6,7 +6,7 @@ from CMEPDA_Exam_repository.raw_final_dataset import download_hep_ph_batches
 @patch('CMEPDA_Exam_repository.raw_final_dataset.requests.get')
 @patch('CMEPDA_Exam_repository.raw_final_dataset.time.sleep', return_value=None)  # Salta l'attesa di 30s tra i tentativi
 @patch('builtins.open', new_callable=mock_open) # Non scrivere file reali
-def test_download_retry_mechanism(mock_sleep, mock_get):
+def test_download_retry_mechanism(mock_open, mock_sleep, mock_get):
     """
     Testa che la funzione riprovi fino a 3 volte in caso di errore
     e che prosegua se al terzo tentativo ha successo.
