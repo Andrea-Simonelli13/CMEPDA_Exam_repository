@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from unittest.mock import patch#, MagicMock
+from unittest.mock import patch, mock_open#, MagicMock
 
 from CMEPDA_Exam_repository.new_model_predictions import (
     trained_CNN_model_prediction,
@@ -22,12 +22,13 @@ from CMEPDA_Exam_repository.new_model_predictions import (
 @patch('pickle.load')
 @patch('numpy.load')
 @patch('CMEPDA_Exam_repository.new_model_predictions.data_splitting_pred')
+@patch('CMEPDA_Exam_repository.new_model_predictions.open', new_callable=mock_open)
 
 @pytest.mark.filterwarnings("ignore:Precision is ill-defined")
 @pytest.mark.filterwarnings("ignore:Recall is ill-defined")
 @pytest.mark.filterwarnings("ignore:F-score is ill-defined")
 
-def test_prediction_edge_cases(mock_split, mock_np_load, mock_pickle, mock_weights, mock_plt, prediction_function):
+def test_prediction_edge_cases(mock_file, mock_split, mock_np_load, mock_pickle, mock_weights, mock_plt, prediction_function):
     """
     Testa la robustezza della predizione con input estremi o vuoti.
     """
