@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from unittest.mock import patch, mock_open#, MagicMock
+from unittest.mock import patch, mock_open
 
 from CMEPDA_Exam_repository.new_model_predictions import (
     trained_CNN_model_prediction,
@@ -8,10 +8,7 @@ from CMEPDA_Exam_repository.new_model_predictions import (
     trained_LSTM_model_prediction
     )
 
-#@patch('CMEPDA_Exam_repository.new_model_predictions.plt.show') # Evitiamo i grafici
-#@patch('CMEPDA_Exam_repository.new_model_predictions.tensorflow.keras.models.load_weights')
-#@patch('CMEPDA_Exam_repository.new_model_predictions.pickle.load') # Mock vocabolario
-#@patch('CMEPDA_Exam_repository.new_model_predictions.np.load')     # Mock classi e labels
+
 @pytest.mark.parametrize("prediction_function", [
     trained_Dense_model_prediction,
     trained_CNN_model_prediction,
@@ -32,14 +29,13 @@ def test_prediction_edge_cases(mock_file, mock_split, mock_np_load, mock_pickle,
     """
     Testa la robustezza della predizione con input estremi o vuoti.
     """
-    
+
     # 1. CONFIGURAZIONE MOCK (Scenario base: 2 classi, vocabolario di 25000)
     mock_pickle.return_value = [f"word{i}" for i in range(24998)]#["word"] * 25000
     mock_np_load.side_effect = [
-        #np.array([[0, 1]]), # y_test (matrice 1x2)
         np.array(["math", "physics"]) # classi (2 classi)
     ]
-    
+
     # 2. CASO LIMITE: TESTO VUOTO O CORTISSIMO
     # Simuliamo che data_splitting_pred restituisca un abstract vuoto ""
     # o un abstract irrilevante per la fisica
@@ -62,13 +58,13 @@ def test_prediction_edge_cases(mock_file, mock_split, mock_np_load, mock_pickle,
             
             #trained_Dense_model_prediction()
             prediction_function()
-            
+
             # 4. VERIFICHE LOGICHE
             # Se la soglia è 0.5, non dovrebbero esserci keywords predette
-            # Possiamo verificare che la funzione abbia stampato "Keywords predette: ()" 
+            # Possiamo verificare che la funzione abbia stampato "Keywords predette: ()"
             # o semplicemente che non sia crashata.
             assert mock_predict.called
-            
+        
     except Exception as e:
         pytest.fail(f"La predizione è crashata con input vuoto: {e}")
 
