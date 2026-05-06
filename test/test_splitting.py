@@ -1,4 +1,3 @@
-import pytest
 import numpy as np
 import json
 from unittest.mock import patch, mock_open
