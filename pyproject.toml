@@ -23,7 +23,8 @@ dependencies = [
   "sentence-transformers",
   "nltk",
   "kneed",
-  "tensorflow >= 2.13"
+  "tensorflow >= 2.13",
+  "tf-keras"
   ]
 
 # Le dipendenze opzionali sono elencate qui, raggruppate in sezioni logiche.
