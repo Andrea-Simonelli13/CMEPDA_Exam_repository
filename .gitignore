@@ -213,7 +213,7 @@ __marimo__/
 #data_new/processed/
 
 #Models
-models/
+#models/
 #new_models/
 #NN_models/
 
