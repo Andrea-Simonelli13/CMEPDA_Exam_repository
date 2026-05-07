@@ -209,10 +209,18 @@ __marimo__/
 #Dataset
 data/raw/
 data/processed/
-data_new/raw/
-data_new/processed/
+#data_new/raw/
+#data_new/processed/
 
 #Models
 models/
-new_models/
+#new_models/
 NN_models/
+
+#Ignora i file pesanti per estensione
+*.weights.h5
+*.pkl
+*.npy
+*.json
+
+!.gitkeep
