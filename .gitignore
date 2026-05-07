@@ -207,15 +207,15 @@ marimo/_lsp/
 __marimo__/
 
 #Dataset
-data/raw/
-data/processed/
+#data/raw/
+#data/processed/
 #data_new/raw/
 #data_new/processed/
 
 #Models
 models/
 #new_models/
-NN_models/
+#NN_models/
 
 #Ignora i file pesanti per estensione
 *.weights.h5
