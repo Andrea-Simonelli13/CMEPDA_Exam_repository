@@ -273,7 +273,7 @@ raw_final_dataset.py
 Questo script permette di ottenere un dataset di articoli scaricati da HEP-INSPIRE. Utilizzando lo script non è possibile cambiare il numero di articoli
 scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare la sezione Dataset.
 
-.. figure:: _static/terminale_raw_final_dataset.png
+.. figure:: _static/terminale_raw_final_dataset.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -282,7 +282,7 @@ exploratory_data_analysis.py
 Questo script permette di eseguire il clustering delle keywords del dataset scaricato e generare un nuovo dataset con le nuove keywords.
 Per ultriori informazioni consultare la sezione Exploratory Data Analysis.
 
-.. image:: _static/terminale_exploratory_data_analysis.png
+.. image:: _static/terminale_exploratory_data_analysis.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -291,7 +291,7 @@ keywords_binarization.py
 Questo script permette di ottenere i label binari da utilizzare durante l'allenamento delle reti neurali. Questo script deve essere usato
 dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informazioni consultare la sezione Exploratory Data Analysis.
 
-.. image:: _static/terminale_keywords_binarization.png
+.. image:: _static/terminale_keywords_binarization.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -300,7 +300,7 @@ show_clusters.py
 Questo script permette di stampare le keywords ottenute dopo il clustering e di vedere quali keyword sono state inserite nel cluster
 che corrisponde a quella keyword.
 
-.. image:: _static/terminale_show_clusters.png
+.. image:: _static/terminale_show_clusters.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -316,27 +316,27 @@ Questo script permette di allenare modelli di rete neurale sul nuovo dataset ott
 Per utilizzare questo script è necessario inserire, dopo il nome dello script, il tipo di modello che si vuole allenare (Dense, CNN o LSTM)
 seguito da new se si vuole utilizzare il nuovo dataset oppure dafault se si vuole utilizzare il dataset di default.
 
-.. image:: _static/terminale_train_model_dense_default.png
+.. image:: _static/terminale_train_model_dense_default.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_train_model_dense_new.png
+.. image:: _static/terminale_train_model_dense_new.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_train_model_CNN_default.png
+.. image:: _static/terminale_train_model_CNN_default.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_train_model_CNN_new.png
+.. image:: _static/terminale_train_model_CNN_new.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_train_model_LSTM_default.png
+.. image:: _static/terminale_train_model_LSTM_default.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_train_model_LSTM_new.png
+.. image:: _static/terminale_train_model_LSTM_new.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -348,27 +348,27 @@ i grafici che riportano i valori delle metriche al variare della soglia decision
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
 di modello.
 
-.. image:: _static/terminale_model_prediction_dense.png
+.. image:: _static/terminale_model_prediction_dense.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_model_prediction_dense_testi.png
+.. image:: _static/terminale_model_prediction_dense_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_model_prediction_CNN.png
+.. image:: _static/terminale_model_prediction_CNN.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_model_prediction_CNN_testi.png
+.. image:: _static/terminale_model_prediction_CNN_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_model_prediction_LSTM.png
+.. image:: _static/terminale_model_prediction_LSTM.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/termiale_model_prediction_LSTM_testi.png
+.. image:: _static/termiale_model_prediction_LSTM_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
@@ -380,26 +380,26 @@ alcuni esempi di predizioni confrontate con le originali e i grafici che riporta
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
 di modello.
 
-.. image:: _static/terminale_new_model_prediction_dense.png
+.. image:: _static/terminale_new_model_prediction_dense.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_new_model_prediction_dense_testi.png
+.. image:: _static/terminale_new_model_prediction_dense_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_new_model_prediction_CNN.png
+.. image:: _static/terminale_new_model_prediction_CNN.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_new_model_prediction_CNN_testi.png
+.. image:: _static/terminale_new_model_prediction_CNN_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_new_model_prediction_LSTM.png
+.. image:: _static/terminale_new_model_prediction_LSTM.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
 
-.. image:: _static/terminale_new_model_prediction_LSTM_testi.png
+.. image:: _static/terminale_new_model_prediction_LSTM_testi.PNG
    :alt: Esempio di utilizzo dello script da terminale.
    :align: center
