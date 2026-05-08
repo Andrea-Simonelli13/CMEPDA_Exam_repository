@@ -17,8 +17,22 @@ Successivamente si deve eseguire il comando qui sotto per installare la liberia,
    :align: center
 
 Una volta installato sarà possibile utilizzare sia le diverse funzioni per ottenere il dataset di articoli scientifici da HEP-INSPIRE,
-che la funzioni e gli script per allenare i modelli e ottenere delle predizioni. Di seguito sono riportati esempi di utilizzo; da terminale
-sarà possibile utilizzare gli script con parametri di default, in sessione python sarà possibile modificare gli argomenti delle funzioni.
+che la funzioni e gli script per allenare i modelli e ottenere delle predizioni. 
+In particolare utilizzando lo script utils.py è possibile scaricare il dataset e i modelli pre-allenati di default, che sono contenuti
+nella Release del repositorio.
+
+.. image:: _static/terminale_utils.PNG
+   :alt: Esempio di utilizzo della funzione in una sessione python.
+   :align: center
+
+.. image:: _static/python_utils.PNG
+   :alt: Esempio di utilizzo della funzione in una sessione python.
+   :align: center
+
+Dopo aver eseguito lo script da terminale o la funzione download_assets() da sessiono o script python, il dataset sarà nella cartella
+data; i modelli pre-allenati saranno nella cartella models.
+Di seguito sono riportati esempi di utilizzo. Da terminale sarà possibile utilizzare gli script con parametri di default, in sessione
+python sarà possibile modificare gli argomenti delle funzioni.
 
 Python
 ======
