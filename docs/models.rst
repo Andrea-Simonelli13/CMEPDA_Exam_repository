@@ -8,7 +8,7 @@ I modelli sono salvati nella cartella models del repositorio. Ciascun modello è
 che include Keras. Di conseguenza per utilizzare questi modelli sarà necessario avere una versione di python non superiore
 alla 3.11.
 Il dataset è stato splittato prendendo l'80% come dati di training, il 10% come dati di validazione e il restante 10% come dati di test.
-Nella funzione che separa il dataset è anche esguito il grafico della distribuzione della lunghezza dei testi. Prima di essere processati,
+Nella funzione che separa il dataset è anche eseguito il grafico della distribuzione della lunghezza dei testi. Prima di essere processati,
 i testi vengono ripuliti dai caratteri di Latex. Inoltre si fa una pulizia anche delle stopwords che possono
 rendere più difficile l'apprendimento della rete. 
 Prima di passare i testi al modello viene eseguita la vettorizzazione attraverso un layer di tipo TextVectorization. Questo
@@ -17,7 +17,7 @@ costruito con tutti gli articoli utilizzati per il training dalle reti. La lungh
 il grafico di distribuzione della lunghezza dei testi.
 Ogni modello conterrà un layer di tipo Embedding. Questo layer prende in ingresso i testi vettorizzati e per ogni parola crea dei vettori che riescono a cogliere l'aspetto semantico, parole
 simili saranno rappresentate da vettori simili.
-Il primo modello è un modello composto da soli layer di tipo Dense. Questo modello è formato da:
+Il primo modello è un modello composto principalmente da layer di tipo Dense. Questo modello è formato da:
 
 - Embedding(input_dim=25001, output_dim=256)
 - GlobalMaxPooling1D()
@@ -32,7 +32,7 @@ Il primo modello è un modello composto da soli layer di tipo Dense. Questo mode
 Il secondo modello, oltre ai layer Dense ed Embedding, utilizza layer di tipo Conv1D che sono in grado di "osservare" più parole contemporaneamente
 a seconda della grandezza del kernel. Il modello convoluzionale è formato da:
 
-- Embedding(input_dim=10001, output_dim=512)
+- Embedding(input_dim=25001, output_dim=512)
 - SpatialDropout1D(0.2)
 - Conv1D(filters=256, kernel_size=5, activation='relu', padding='same')
 - BatchNormalization()
@@ -58,7 +58,7 @@ Il terzo e ultimo modello invece utilizza un layer di tipo LSTM (Long-Short Term
 - BatchNormalization()
 - Dense(y_train.shape[1], activation='sigmoid')
 
-Come metrica si utilizza l'F1-score con average micro, la Precision e la Recall, come optimizer adam e come loss la BinaryCrossentropy.
+Per tutti i modelli come metriche si utilizzano l'F1-score con average micro, la Precision e la Recall, come optimizer adam e come loss la BinaryCrossentropy.
 Durante il training dei modelli sono stati utilizzati i callbacks di EarlyStopping e ReduceLROnPlateau. Entrambi monitorano la funzione di loss
 e l'EarlyStopping è settato per impostare i parametri con i quali si è ottenuto il valore migliore.
 Il repositorio contiene uno script (train_models.py) che permette di allenare da zero i modelli proposti. Questo script contiene tre funzioni,

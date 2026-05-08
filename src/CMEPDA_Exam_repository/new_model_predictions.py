@@ -37,11 +37,9 @@ def clean_text(text):
           " ".join(clean_words) (string): testo pulito
     '''
     # 1. Rimuove il simbolo $ spesso utilizzato in LaTex
-    #text = re.sub(r'\$.*?\$', '', text)
     text = text.replace('$', '')
     # 2. Rimuove il simbolo \ che spesso è utilizzato in latex
     # per i simboli come alpha, beta, tau etc.
-    #text = re.sub(r'\\\w+', '', text)
     text = text.replace('\\', '')
     # 3. Rimuove tutto ciò che è tra due parentesi graffe comprese le graffe
     text = re.sub(r'\{.*?\}', ' ', text)
@@ -104,10 +102,6 @@ def trained_Dense_model_prediction():
     label_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
 
-    #data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
-    #label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
-
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
 
@@ -119,7 +113,6 @@ def trained_Dense_model_prediction():
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
 
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
     model_Dense = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
         GlobalMaxPooling1D(),
@@ -139,17 +132,9 @@ def trained_Dense_model_prediction():
 
     model_Dense.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
-
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
-
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_Dense.predict(X_test_vect)
@@ -199,7 +184,6 @@ def trained_Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -207,7 +191,6 @@ def trained_Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -215,7 +198,6 @@ def trained_Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -227,17 +209,11 @@ def trained_Dense_model_new_prediction(new_text):
     Args:
          new_text (list): lista dei testi dei nuovi articoli
     '''
-    #if isinstance(new_text, str):
-        #print(new_text)
-    #else:
-        #print("Tipo non valido: è necessario passare una stringa")
     nltk.download('stopwords')
-    #weights_path = "models/model_Dense_v41_25.weights.h5"
-    #vectorizer_path="models/vectorizer_Dense_v41_weights_25.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_model_Dense.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_vocabulary_Dense.pkl"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
@@ -266,7 +242,6 @@ def trained_Dense_model_new_prediction(new_text):
 
     model_Dense.summary()
 
-    #classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
@@ -287,17 +262,10 @@ def trained_CNN_model_prediction():
     print("Verranno utilizzati i file presenti nelle cartelle new_models e data_new/processed")
     weights_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_model_CNN.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_vocabulary_CNN.pkl"
-    #data_path="data/processed/final_articles_normalized_optimal_clustering.json"
-    #label_path="data/processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     data_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
     label_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
-
-    #data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
-    #label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
@@ -310,8 +278,6 @@ def trained_CNN_model_prediction():
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
 
-
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
     model_CNN = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
         SpatialDropout1D(0.2),
@@ -334,17 +300,9 @@ def trained_CNN_model_prediction():
 
     model_CNN.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
-
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
-
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_CNN.predict(X_test_vect)
@@ -394,7 +352,6 @@ def trained_CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -402,7 +359,6 @@ def trained_CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -410,7 +366,6 @@ def trained_CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -423,12 +378,10 @@ def trained_CNN_model_new_prediction(new_text):
          new_text (list): lista dei testi dei nuovi articoli
     '''
     nltk.download('stopwords')
-    #weights_path = "models/model_CNN_v61.weights.h5"
-    #vectorizer_path="models/vectorizer_CNN_v61.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_model_CNN.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_vocabulary_CNN.pkl"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
@@ -460,7 +413,6 @@ def trained_CNN_model_new_prediction(new_text):
 
     model_CNN.summary()
 
-    #classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
@@ -480,18 +432,10 @@ def trained_LSTM_model_prediction():
     print("Verranno utilizzati i file presenti nelle cartelle new_models e data_new/processed")
     weights_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_model_LSTM.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_vocabulary_LSTM.pkl"
-    
-    #data_path="data/processed/final_articles_normalized_optimal_clustering.json"
-    #label_path="data/processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     data_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
     label_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_dataset_binary_lables.npy"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
-
-    #data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
-    #label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
@@ -503,8 +447,6 @@ def trained_LSTM_model_prediction():
 
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
-
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
 
     model_LSTM = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
@@ -527,17 +469,9 @@ def trained_LSTM_model_prediction():
 
     model_LSTM.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
-
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
-
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_LSTM.predict(X_test_vect)
@@ -587,7 +521,6 @@ def trained_LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -595,7 +528,6 @@ def trained_LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -603,7 +535,6 @@ def trained_LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -615,17 +546,11 @@ def trained_LSTM_model_new_prediction(new_text):
     Args:
          new_text (list): lista dei testi dei nuovi articoli
     '''
-    #if isinstance(new_text, str):
-        #print(new_text)
-    #else:
-        #print("Tipo non valido: è necessario passare una stringa")
     nltk.download('stopwords')
-    #weights_path = "models/model_LSTM_v81.weights.h5"
-    #vectorizer_path="models/vectorizer_LSTM_v81.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_model_LSTM.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NEW_MODELS / "new_vocabulary_LSTM.pkl"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy"
-    #classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
     
     with open(vectorizer_path, 'rb') as f:
         vectorizer_vocab = pickle.load(f)
@@ -656,7 +581,6 @@ def trained_LSTM_model_new_prediction(new_text):
 
     model_LSTM.summary()
 
-    #classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
@@ -684,7 +608,6 @@ def main():
         modelli["help"]()
         return
     modello = sys.argv[1]
-    #nuovo_testo = sys.argv[2]
     if len(sys.argv) == 2:
         if modello in modelli:
             if modello != "help":

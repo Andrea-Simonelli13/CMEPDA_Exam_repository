@@ -27,7 +27,7 @@ def test_data_splitting_integrity(mock_file, mock_np_load, mock_plt):
 
     # 3. ASSERZIONI
     
-    # Verifica che il totale sia conservato (100 = 70 + 15 + 15 o simile, a seconda dei tuoi ratio)
+    # Verifica che il totale sia conservato (100 = 80 + 10 + 10)
     current_total = len(X_train) + len(X_val) + len(X_test)
     assert current_total == total_samples, f"Persi dei dati! {current_total} != {total_samples}"
 

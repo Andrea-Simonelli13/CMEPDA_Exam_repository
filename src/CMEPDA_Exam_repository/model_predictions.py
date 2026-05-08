@@ -1,21 +1,3 @@
-#from tensorflow.keras.layers import TextVectorization, Embedding, Dense, GlobalAveragePooling1D, GlobalMaxPooling1D, Conv1D, LSTM, Dropout, Bidirectional, BatchNormalization, SpatialDropout1D, LayerNormalization
-#from tensorflow.keras.models import Sequential
-#from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateauation,
-#import re 
-#import json
-#import nltk
-#import gc
-#import tensorflow
-#import sys
-#import pickle
-#nltk.download('stopwords')
-#from sklearn.model_selection import train_test_split
-#from sklearn.preprocessing import MultiLabelBinarizer
-#from sklearn.metrics import precision_score, recall_score, f1_score
-#import numpy as np
-#import matplotlib.pyplot as plt
-#from collections import Counter
-#from nltk.corpus import stopwords
 '''Questo script contiene le funzioni per ottenere le predizioni sui dati
 di test e su nuovi articoli.
 '''
@@ -55,11 +37,9 @@ def clean_text(text):
           " ".join(clean_words) (string): testo pulito
     '''
     # 1. Rimuove il simbolo $ spesso utilizzato in LaTex
-    #text = re.sub(r'\$.*?\$', '', text)
     text = text.replace('$', '')
     # 2. Rimuove il simbolo \ che spesso è utilizzato in latex
     # per i simboli come alpha, beta, tau etc.
-    #text = re.sub(r'\\\w+', '', text)
     text = text.replace('\\', '')
     # 3. Rimuove tutto ciò che è tra due parentesi graffe comprese le graffe
     text = re.sub(r'\{.*?\}', ' ', text)
@@ -112,19 +92,11 @@ def Dense_model_prediction():
     crea i grafici delle metriche in funzione della soglia decisionale.
     '''
     nltk.download('stopwords')
-    #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
+
     print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
-    #weights_path = "models/model_Dense_v41_25.weights.h5"
-    #vectorizer_path="models/vectorizer_Dense_v41_weights_25.pkl"
-    #weights_path = "NN_models/model_Dense_v32_BC_02_25000.weights.h5"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_Dense_v32_BC_02_25000.weights.h5"
-    #vectorizer_path = "NN_models/vectorizer_Dense_v32_BC_02_25000.pkl"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_Dense_v32_BC_02_25000.pkl"
-    #weights_path = "NN_models/model_Dense_v43_BFC_02_25000.weights.h5"
-    #vectorizer_path = "NN_models/vectorizer_Dense_v43_BFC_02_25000.pkl"
-    #data_path="data/processed/final_articles_normalized_optimal_clustering.json"
-    #label_path="data/processed/final_dataset_binary_lables_optimal_clustering.npy"
-    #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
     label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
@@ -141,7 +113,6 @@ def Dense_model_prediction():
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
 
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
     model_Dense = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
         GlobalMaxPooling1D(),
@@ -161,17 +132,10 @@ def Dense_model_prediction():
 
     model_Dense.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
-
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_Dense.predict(X_test_vect)
@@ -221,7 +185,6 @@ def Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -229,7 +192,6 @@ def Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -237,7 +199,6 @@ def Dense_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -248,16 +209,7 @@ def Dense_model_new_prediction(new_text):
     Args:
          new_text (list): lista dei testi dei nuovi articoli
     '''
-    #if isinstance(new_text, str):
-        #print(new_text)
-    #else:
-        #print("Tipo non valido: è necessario passare una stringa")
     nltk.download('stopwords')
-    #weights_path = "models/model_Dense_v41_25.weights.h5"
-    #vectorizer_path="models/vectorizer_Dense_v41_weights_25.pkl"
-    #weights_path = "NN_models/model_Dense_v32_BC_02_25000.weights.h5"
-    #vectorizer_path = "NN_models/vectorizer_Dense_v32_BC_02_25000.pkl"
-    #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
 
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_Dense_v32_BC_02_25000.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_Dense_v32_BC_02_25000.pkl"
@@ -305,14 +257,12 @@ def CNN_model_prediction():
     crea i grafici delle metriche in funzione della soglia decisionale.
     '''
     nltk.download('stopwords')
-    #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
+
     print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
-    #weights_path = "models/model_CNN_v61.weights.h5"
-    #vectorizer_path="models/vectorizer_CNN_v61.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_CNN_v44_BC_02.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_CNN_v44_BC_02.pkl"
-    #weights_path = "NN_models/model_CNN_v63_BFC_02.weights.h5"
-    #vectorizer_path = "NN_models/vectorizer_CNN_v63_BFC_02.pkl"
+
     data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
     label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
@@ -328,7 +278,6 @@ def CNN_model_prediction():
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
 
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
     model_CNN = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
         SpatialDropout1D(0.2),
@@ -351,17 +300,11 @@ def CNN_model_prediction():
 
     model_CNN.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
 
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_CNN.predict(X_test_vect)
@@ -411,7 +354,6 @@ def CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -419,7 +361,6 @@ def CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -427,7 +368,6 @@ def CNN_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -439,13 +379,8 @@ def CNN_model_new_prediction(new_text):
     Args:
          new_text (list): lista dei testi dei nuovi articoli
     '''
-    #if isinstance(new_text, str):
-        #print(new_text)
-    #else:
-        #print("Tipo non valido: è necessario passare una stringa")
     nltk.download('stopwords')
-    #weights_path = "models/model_CNN_v61.weights.h5"
-    #vectorizer_path="models/vectorizer_CNN_v61.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_CNN_v44_BC_02.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_CNN_v44_BC_02.pkl"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
@@ -494,14 +429,12 @@ def LSTM_model_prediction():
     crea i grafici delle metriche in funzione della soglia decisionale.
     '''
     nltk.download('stopwords')
-    #if weights_path==None or vectorizer_path==None or data_path==None or label_path==None or classes_path==None:
+
     print("Verranno utilizzati i file presenti nelle cartelle models e data/processed")
-    #weights_path = "models/model_LSTM_v81.weights.h5"
-    #vectorizer_path="models/vectorizer_LSTM_v81.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_LSTM_v81_BC_02.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_LSTM_v81_BC_02.pkl"
-    #weights_path = "NN_models/model_LSTM_v8_BFC_02.weights.h5"
-    #vectorizer_path = "NN_models/vectorizer_LSTM_v8_BFC_02.pkl"
+
     data_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_articles_normalized_optimal_clustering.json"
     label_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_dataset_binary_lables_optimal_clustering.npy"
     classes_path= CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
@@ -516,8 +449,6 @@ def LSTM_model_prediction():
 
     vectorizer = TextVectorization(max_tokens=25000, output_mode='int', output_sequence_length=200)
     vectorizer.set_vocabulary(vectorizer_vocab)
-
-    #model_Dense = tensorflow.keras.models.load_model(Dense_model_path, compile=False)
 
     model_LSTM = Sequential([
         Embedding(input_dim=25001, output_dim = 512),
@@ -540,17 +471,10 @@ def LSTM_model_prediction():
 
     model_LSTM.summary()
 
-    #with open (data_path, "r", encoding="utf-8") as f:
-        #data = json.load(f)
-
-    #labels = np.load(label_path).astype(np.int8)
     classes = np.load(classes_path, allow_pickle=True)
     mlb = MultiLabelBinarizer()
     mlb.classes_ = classes
 
-    #original_keywords = [article["keywords"] for article in data]
-    #texts = [clean_text(article["text"]) for article in data]
-    ##
 
     X_test_vect = vectorizer(np.array(X_test)).numpy().astype('int32')
     prediction = model_LSTM.predict(X_test_vect)
@@ -600,7 +524,6 @@ def LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Precision')
     plt.title('Soglia vs Precision')
-    #plt.legend()
 
     # 2. Plot della Recall
     plt.subplot(1, 3, 2)
@@ -608,7 +531,6 @@ def LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('Recall')
     plt.title('Soglia vs Recall')
-    #plt.legend()
 
     # 2. Plot del'F1
     plt.subplot(1, 3, 3)
@@ -616,7 +538,6 @@ def LSTM_model_prediction():
     plt.xlabel('Soglia')
     plt.ylabel('F1-Score')
     plt.title('Soglia vs F1-Score')
-    #plt.legend()
 
     plt.tight_layout() # Evita che i titoli si sovrappongano
     plt.show()
@@ -628,13 +549,8 @@ def LSTM_model_new_prediction(new_text):
     Args:
          new_text (list): lista dei testi dei nuovi articoli
     '''
-    #if isinstance(new_text, str):
-        #print(new_text)
-    #else:
-        #print("Tipo non valido: è necessario passare una stringa")
     nltk.download('stopwords')
-    #weights_path = "models/model_LSTM_v81.weights.h5"
-    #vectorizer_path="models/vectorizer_LSTM_v81.pkl"
+
     weights_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "model_LSTM_v81_BC_02.weights.h5"
     vectorizer_path = CMEPDA_EXAM_REPOSITORY_NN_MODELS / "vectorizer_LSTM_v81_BC_02.pkl"
     classes_path = CMEPDA_EXAM_REPOSITORY_DATA / "processed/final_keyword_binary_classes_optimal_clustering.npy"
@@ -694,7 +610,6 @@ def main():
         modelli["help"]()
         return
     modello = sys.argv[1]
-    #nuovo_testo = sys.argv[2]
     if len(sys.argv) == 2:
         if modello in modelli:
             if modello != "help":
@@ -719,30 +634,4 @@ def main():
             modelli["help"]()
 
 if __name__ == "__main__":
-    #Dense_model_prediction(
-        #Dense_model_path="models/model_Dense_v41.h5",
-        #weights_path = "models/model_Dense_v41_25.weights.h5",
-        #vectorizer_path="models/vectorizer_Dense_v41_weights_25.pkl",
-        #data_path="data/processed/final_articles_normalized_optimal_clustering.json",
-        #label_path="data/processed/final_dataset_binary_lables_optimal_clustering.npy",
-        #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
-    #)
-
-    #CNN_model_prediction(
-        #Dense_model_path="models/model_Dense_v41.h5",
-        #weights_path = "models/model_CNN_v61.weights.h5",
-        #vectorizer_path="models/vectorizer_CNN_v61.pkl",
-        #data_path="data/processed/final_articles_normalized_optimal_clustering.json",
-        #label_path="data/processed/final_dataset_binary_lables_optimal_clustering.npy",
-        #classes_path="data/processed/final_keyword_binary_classes_optimal_clustering.npy"
-    #)
-
-    #LSTM_model_prediction()
-    #models_prediction = {"Dense": Dense_model_prediction,
-                         #"CNN": CNN_model_prediction,
-                         #"LSTM": LSTM_model_prediction
-                        #}
-    #modello = sys.argv[1]
-    #print(f'Modello selezionato : {modello}')
-    #models_prediction[modello]()
     main()

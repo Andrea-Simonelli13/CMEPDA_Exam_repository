@@ -26,7 +26,8 @@ più frequenti fino a raggiungere una copertura minima dell'85%.
 Infine utilizzando la mappa si sostituiscono le keywords vecchie con quelle nuove, scartando gli articoli che rimangono senza keywords.
 Alla fine della funzione nella cartella data_new/processed è possibile trovare il dataset con le nuove keywords nel file new_article_clustering.json e la mappa
 delle keywords nel file new_keywords_map.json. Dei file di default sono contenuti nella cartella data/processed.
-Il dataset così ottenuto viene passato allo script keywords_binarization.py. Questo script contiene una funzione che binarizza le liste di keywords
+Il dataset così ottenuto viene passato allo script keywords_binarization.py.
+Dopo lo script o la funzione exploratory_data_analysis deve essere sempre utilizzato lo script o la funzione keywords_binarization. Questo script contiene una funzione che binarizza le liste di keywords
 di ogni articolo. Per fare questo viene utilizzato un modulo di sklearn chiamato MultiLabelBinarizer che prende in ingresso la lista di keywords di ogni
 articolo e le binarizza trasformandole in liste di dimensione pari al numero di keywords totali. Queste liste avranno il valore '1' nella posizione corrispondente
 alle keywords della lista originale. Le liste così ottenute sono salvate in un file new_dataset_binary_labels.npy, così come le classi del binarizer nel file new_keyword_binary_classes.npy

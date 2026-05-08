@@ -2,46 +2,21 @@
 Utilizzo
 ========
 
-Questo repositorio può essere utilizzato sia come pacchetto python, che eseguendo gli script da terminale.
-Per utilizzarlo come pacchetto è necessario per prima cosa installarlo utilizzando pip.
-INSERIRE FIGURA DI PIP INSTALL cmepda_Exam_REPOSITORY
-Il pacchetto permette di utilizzare diverse funzioni. Gli esempi di utilizzo sono riportate di seguito.
-Il pacchetto permette di utilizzare diverse funzioni. Con la funzione download_hep_ph_batches() è possibile scaricare
-e salvare in un file .json il dataset di articoli da HEP-INSPIRE. Per ulteriori informazioni sugli argomenti della funzione fare riferimento
-alla sezione dataset della documentazione.
-INSERIRE ESEMPIO DI UTILIZZO FUNZIONE download_hep_ph_batches
-La funzione exploratory_data_analysis() permette di eseguire il clustering delle keywords degli articoli scaricati. Ancora una volta si rimanda alla sezione
-EDA della documentazione per ulteriori informazioni.
-INSERIRE ESEMPIO DI UTILIZZO FUNZIONE exploratory_data_analysis
-La funzione keywords_binarization() permette di ottenere i label che serviranno per l'allenamento dei modelli di deep learning. Ulteriori
-informazioni a riguardo sono riportate nella sezione EDA della documentazione.
-INSERIRE ESEMPIO DI UTILIZZO FUNZIONE keywords_binarization
-La funzione show_clusters_content() permette di stampare e salvare il contenuto dei clusters ottenuti attraverso la funzione exploratory_data_analysis.
-Anche in questo caso ulteriori informazioni sono riportate nella sezione EDA della documentazione.
-INSERIRE ESEMPIO DI UTILIZZO FUNZIONE show_clusters_content e aggiornare file eda.rst 
-CONTINUARE CON TRAIN_MODELS E MODEL_PREDICTIONS
-
-Questo repositorio può essere utilizzato sia come pacchetto python, che eseguendo da terminale gli script presenti
-nella catrella src/cmepda_Exam_REPOSITORY. Per utilizzarlo come pacchetto è necessario per prima cosa installarlo
-utilizzando pip install.
-Di seguito sono riportati esempi di come utilizzare gli script all'interno del repositorio, sia da terminale che in
-una sessione python.
-
 Per poter utilizzare gli script e le funzioni all'interno del repositorio è necessario per prima cosa installare il pacchetto.
 Il pacchetto è compatibile solo con versioni python non superiori alla 3.11.
-Per prima cosa è necessario spostarsi nella cartella del repositorio.
+Prima di tutto è necessario spostarsi nella cartella del repositorio.
 
 .. image:: _static/change_dir_install.png
    :alt: Cambio directory.
    :align: center
 
-Successivamente si deve eseguire il comando qui sotto.
+Successivamente si deve eseguire il comando qui sotto per installare la liberia, così da poter usare le funzioni e gli script.
 
 .. image:: _static/pip_intsall_pacchetto.png
    :alt: Istallazione del pacchetto.
    :align: center
 
-Una volta installato sarà possibile utilizzare le diverse funzioni per ottenere il dataset di articoli scientifici da HEP-INSPIRE,
+Una volta installato sarà possibile utilizzare sia le diverse funzioni per ottenere il dataset di articoli scientifici da HEP-INSPIRE,
 che la funzioni e gli script per allenare i modelli e ottenere delle predizioni. Di seguito sono riportati esempi di utilizzo; da terminale
 sarà possibile utilizzare gli script con parametri di default, in sessione python sarà possibile modificare gli argomenti delle funzioni.
 
@@ -296,7 +271,7 @@ Per ottenere il dataset necessario ad allenare i modelli di rete neurale sono di
 raw_final_dataset.py
 ~~~~~~~~~~~~~~~~~~~~
 Questo script permette di ottenere un dataset di articoli scaricati da HEP-INSPIRE. Utilizzando lo script non è possibile cambiare il numero di articoli
-scaricati. Per ultriori informazioni consultare la sezione Dataset.
+scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare la sezione Dataset.
 
 .. figure:: _static/terminale_raw_final_dataset.png
    :alt: Esempio di utilizzo dello script da terminale.

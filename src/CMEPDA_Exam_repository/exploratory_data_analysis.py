@@ -11,7 +11,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 #importa sentence transformer per l'embedding delle keyword
 from sentence_transformers import SentenceTransformer
-#imposrta l'algoritmo di clustering
+#importa l'algoritmo di clustering
 from sklearn.cluster import AgglomerativeClustering, Birch
 from sklearn.preprocessing import normalize
 from kneed import KneeLocator
@@ -49,9 +49,8 @@ def find_optimal_threshold(embeddings, start=0.5, stop=1.5, step=0.05, plot=True
 
     for t in thresholds:
         print(f"valore distance_thrashold = {t:.2f}")
-        #clustering = AgglomerativeClustering(n_clusters=None, distance_threshold=t)
         clustering = Birch(
-        threshold=0.5,#0.5,
+        threshold=0.5,
         branching_factor=50,
         n_clusters=AgglomerativeClustering(n_clusters=None, distance_threshold=t)
         )
@@ -66,14 +65,6 @@ def find_optimal_threshold(embeddings, start=0.5, stop=1.5, step=0.05, plot=True
         plt.grid(True)
         plt.show()
 
-    # Calcolo del punto "ginocchio" come soglia ottimale:
-    # differenze consecutive del numero di cluster
-    #diffs = np.diff(cluster_counts)
-    #diffs = np.abs(np.diff(cluster_counts))
-    # cerco il primo punto(indice) dove la riduzione diventa minima (curva più piatta)
-    #idx = np.argmax(diffs >= -1)  # -1 significa che la riduzione rallenta molto
-    #idx = np.argmin(diffs)
-    #optimal_threshold = thresholds[idx]
     # Trova il punto di knee
     knee = KneeLocator(thresholds, cluster_counts, curve='convex', direction='decreasing')
     optimal_threshold = knee.knee
@@ -91,7 +82,7 @@ def exploratory_data_analysis():
     json_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "raw/new_raw_dataset.json"
     # apre il file JSON in modalità lettura ("r")
     # encoding="utf-8" serve per leggere correttamente caratteri speciali
-    with open(json_folder, "r", encoding="utf-8") as f: #"data/raw/raw_final_dataset.json"
+    with open(json_folder, "r", encoding="utf-8") as f:
 
         # json.load legge il file e lo converte in una struttura Python
         # nel tuo caso diventa una lista di dizionari (uno per ogni articolo)
@@ -125,19 +116,7 @@ def exploratory_data_analysis():
 
     #fa il grafico della frequenza delle keywords
     counter_raw = Counter(all_keywords)
-    #freqs = sorted(counter_raw.values(), reverse=True)
 
-    #plt.figure(figsize=(6,4))
-    #plt.plot(freqs)
-
-    #plt.xscale("log")
-    #plt.yscale("log")
-
-    #plt.xlabel("Keyword rank")
-    #plt.ylabel("Frequency")
-    #plt.title("Keyword frequency distribution (log-log)")
-
-    #plt.show()
 
     # set(all_keywords) elimina i duplicati
     # quindi len(set(...)) conta quante keyword diverse esistono
@@ -150,13 +129,6 @@ def exploratory_data_analysis():
     # {"dark matter": 1200, "supersymmetry": 850, ...}
     #counter = Counter(all_keywords)
 
-
-    # most_common(20) restituisce le 20 keyword più frequenti
-    # con il numero di occorrenze
-    #print(counter.most_common(20))
-
-    #min_freq = 50
-    #valid_keywords = {k for k, v in counter.items() if v >= min_freq}
 
     #embedding
     model = SentenceTransformer("all-MiniLM-L6-v2")
@@ -176,10 +148,6 @@ def exploratory_data_analysis():
     print(f"valore ottimale = {optimal_value:.2f}")
 
     #clustering
-    #clustering = AgglomerativeClustering(
-        #n_clusters=None,
-        #distance_threshold=1.05#optimal_value#0.9  #0.4
-    #)
     clustering = Birch(
         threshold=0.5,#0.5,
         branching_factor=50,
@@ -191,15 +159,6 @@ def exploratory_data_analysis():
     print(f"Clustering completato. Creati {len(set(clusters))} cluster.")
     #associo ogni keyword al rispettivo cluster
     keyword_to_cluster = dict(zip(unique_keywords, clusters))
-    #print(f"keyword to clusters = {keyword_to_cluster}")
-
-    #creo un keyword rappresentativa del cluster prendendo la prima keyword associata al cluster
-    #cluster_to_keyword = {}
-
-    #for keyword, cluster in keyword_to_cluster.items():
-        #if cluster not in cluster_to_keyword:
-            #cluster_to_keyword[cluster] = keyword
-    #print(f"cluster to keywords = {cluster_to_keyword}")
 
     #creo un contatore per i cluster
     cluster_counts = Counter()
@@ -230,41 +189,24 @@ def exploratory_data_analysis():
     mapped_keywords = [keyword_map.get(k, k) for k in all_keywords]
     counter = Counter(mapped_keywords)
 
-    #fa il grafico della frequenza delle keywords dopo il clustering
-    #freqs_clustered = sorted(counter.values(), reverse=True)
-
-    #plt.figure(figsize=(6,4))
-    #plt.plot(freqs_clustered)
-
-    #plt.xscale("log")
-    #plt.yscale("log")
-
-    #plt.xlabel("Clustered keyword rank")
-    #plt.ylabel("Frequency")
-    #plt.title("Clustered keyword frequency distribution")
-
-    #plt.show()
-
     #grafico della distribuzione della frequenza delle keywords prima e dopo il clustering
-    max_freq = max(max(counter_raw.values()), max(counter.values()))
-    bins = np.arange(-0.5, max_freq + 0.5 ,1)
-    plt.hist(counter_raw.values(), bins=bins, alpha=0.8, label="before clustering")
-    plt.hist(counter.values(), bins=bins, alpha=0.5, label="after clustering")
+    #max_freq = max(max(counter_raw.values()), max(counter.values()))
+    #bins = np.arange(-0.5, max_freq + 0.5 ,1)
+    #plt.hist(counter_raw.values(), bins=bins, alpha=0.8, label="before clustering")
+    #plt.hist(counter.values(), bins=bins, alpha=0.5, label="after clustering")
 
-    plt.xlim(0, 50)
+    #plt.xlim(0, 50)
     #plt.ylim(0, 10)
-    plt.xlabel("Keyword frequency")
-    plt.ylabel("Number of keywords")
-    plt.title("Keyword frequency distribution")
+    #plt.xlabel("Keyword frequency")
+    #plt.ylabel("Number of keywords")
+    #plt.title("Keyword frequency distribution")
 
-    plt.legend()
-    plt.show()
+    #plt.legend()
+    #plt.show()
 
     print("freq media prima:", np.mean(list(counter_raw.values())))
     print("freq media dopo:", np.mean(list(counter.values())))
 
-    #top_keywords = set([k for k, _ in counter.most_common(top_n_keywords)])
-    #print(f"Top {top_n_keywords} keyword clusterate selezionate")
 
     #scelgo la frequenza minima che deve avere una keyword nel dataset
     min_occurency = 200
@@ -288,13 +230,6 @@ def exploratory_data_analysis():
     print(f"Keyword totali dopo clustering: {len(counter)}")
     print(f"Keyword con almeno {min_occurency} occorrenze: {len(filtered_counter)}")
     print(f"Selezionate automaticamente {len(top_keywords)} keyword per coprire l'{target_coverage*100}% del dataset.")
-    #applico il mapping agli articoli, così da sostituire
-    # le keyword con quelle ottenute dopo il clustering
-    #for article in data:
-        #article["keywords"] = [
-            #keyword_map.get(k, k) for k in article["keywords"]
-        #]
-        #article["keywords"] = list(set(article["keywords"]))
 
     #applico la mappa alle keywords di ogni articolo e tengo solo le keyords più frequenti
     #contando il numero di articoli che rimangono senza keywords
@@ -311,11 +246,11 @@ def exploratory_data_analysis():
     print(f"Numero di articoli rimasti = {len(data)}")
     #salvo la mappa e gli articoli con le nuove keywords
     map_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keywords_map.json"
-    with open(map_folder, "w", encoding="utf-8") as f: #"data/processed/final_keyword_map_optimal_clustering.json"
+    with open(map_folder, "w", encoding="utf-8") as f:
         json.dump(keyword_map, f, indent=2, ensure_ascii=False)
 
     article_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_article_clustering.json"
-    with open(article_folder, "w", encoding="utf-8") as f: #"data/processed/final_articles_normalized_optimal_clustering.json"
+    with open(article_folder, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 if __name__ == "__main__":

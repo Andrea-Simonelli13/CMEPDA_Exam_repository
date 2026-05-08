@@ -26,23 +26,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
     '''
 
     save_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "raw/new_raw_dataset.json"
-    #save_folder = f"data/raw/{file_name}.json"
-    #controlla se esistono le cartelle e le cancella compresi i file al loro interno
-    #if os.path.exists(save_folder):
-        #shutil.rmtree(save_folder)
-    # Cartella dove salvare i batch JSON
-    #os.makedirs(save_folder, exist_ok=True)
 
-    # cancella i file JSON esistenti
-    #for file in os.listdir(save_folder):
-        #file_path = os.path.join(save_folder, file)
-        #if os.path.isfile(file_path):
-            #os.remove(file_path)
-
-    #print("Cartella pulita. Inizio download...")
-
-    #batch_size = 100   # quanti articoli per batch
-    #max_papers = 2000  # massimo articoli da scaricare
     dataset=[]
     for year in range(1991, 2025):
         print(f"Scaricando articoli anno {year}")
@@ -57,10 +41,10 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                 "q": f"arxiv_eprints.categories:hep-ph AND date:{year}", #value
                 "size": batch_size,
                 "page": page,
-                "format": "json" #"json-expanded"
+                "format": "json"
             }
 
-            #response = requests.get(url, params=params)
+
             #Si fa un try-box per la richiesta HTTP. Viene inviata la richiesta,
             #se non si riceve una risposta
             #dall'API in 2 minuti viene sollevata un'exception.
@@ -78,18 +62,11 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                     print(f"Errore al tentativo {tentativi + 1}: {e}")
                     print(f"Riprovo tra {attesa} secondi...")
                     time.sleep(attesa)
-                    #print(f"Errore API: {e}")
-                    #time.sleep(30)
-                    #continue
-                    #break
 
             if not success:
                 print(f"ATTENZIONE: Impossibile scaricare batch {page} dopo 3 tentativi. Salto al batch successivo.")
                 page += 1 # Salta questa pagina per non restare bloccato all'infinito
                 continue
-            #if response.status_code != 200:
-                #print(f"Errore API: {response.status_code}")
-                #break
 
             data = response.json()
             papers = data.get("hits", {}).get("hits", [])
@@ -98,15 +75,11 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                 print("Nessun altro paper trovato, fine download.")
                 break
 
-            # Salva batch JSON
-            #batch_file = f"{save_folder}/batch_{page}.json"
-            #with open(batch_file, "w", encoding="utf-8") as f:
-                #json.dump(data, f, ensure_ascii=False, indent=2)
 
             for paper in papers:
                 metadata = paper.get("metadata", {}) #prendo l'articolo
 
-                #title = metadata.get("titles", [{}])[0].get("title", "")
+
                 #titles può contenere più di un titolo.
                 #Quindi si prende il primo titolo con "source" == "arXiv"
                 arxiv_title = ""
@@ -115,7 +88,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                     if title.get("source", "") == "arXiv":
                         arxiv_title = title.get("title", "")
                         break
-                #abstract = metadata.get("abstracts", [{}])[0].get("value", "")
+
                 #abstracts può contenere più di un titolo.
                 #Quindi si prende il primo abstract con "source" == "arXiv"
                 arxiv_abstract = ""
