@@ -6,13 +6,13 @@ Per poter utilizzare gli script e le funzioni all'interno del repositorio è nec
 Il pacchetto è compatibile solo con versioni python non superiori alla 3.11.
 Prima di tutto è necessario spostarsi nella cartella del repositorio.
 
-.. image:: _static/change_dir_install.png
+.. image:: _static/change_dir_install.PNG
    :alt: Cambio directory.
    :align: center
 
 Successivamente si deve eseguire il comando qui sotto per installare la liberia, così da poter usare le funzioni e gli script.
 
-.. image:: _static/pip_intsall_pacchetto.png
+.. image:: _static/pip_intsall_pacchetto.PNG
    :alt: Istallazione del pacchetto.
    :align: center
 
@@ -37,7 +37,7 @@ Per modificare i valori degli argomenti della funzione è necessario utilizzare 
 da terminale è possibile scaricare il dataset solamente con le impostazioni di default. Per ulteriori informazioni
 sulla funzione consultare la sezione dataset.
 
-.. image:: _static/python_raw_final_dataset.png
+.. image:: _static/python_raw_final_dataset.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -46,7 +46,7 @@ exploratory_data_analysis()
 La funzione exploratory_data_analysis() permette di eseguire il clustering delle keywords del dataset scaricato con la
 funzione download_hep_ph_batches(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
 
-.. image:: _static/python_exploratory_data_analysis.png
+.. image:: _static/python_exploratory_data_analysis.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -56,7 +56,7 @@ La funzione keywords_binarization() permette di trasformare le keywords di ogni 
 per l'allenamento dei modelli di deep learning. Questa funzione deve essere utilizzata solamente dopo aver eseguito la funzione
 exploratory_data_analysis(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
 
-.. image:: _static/python_keywords_binarization.png
+.. image:: _static/python_keywords_binarization.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -65,7 +65,7 @@ show_clusters_content()
 La funzione show_clusters_content() permette di vedere le keywords ottenute dopo il clustering e le corrispondenti keywords che fanno parte del cluster.
 Inoltre stampa tutte le keywords che sono state selezionate per essere utilizzate nell'allenamento della rete.
 
-.. image:: _static/python_show_clusters.png
+.. image:: _static/python_show_clusters.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -83,43 +83,43 @@ Per ulteriori informazioni sugli argomenti da utilizzare consultare la sezione m
 
 - train_model_Dense()
 
-.. image:: _static/python_train_model_dense_import.png
+.. image:: _static/python_train_model_dense_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_dense_default.png
+.. image:: _static/python_train_model_dense_default.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_dense_new.png
+.. image:: _static/python_train_model_dense_new.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - train_model_CNN()
 
-.. image:: _static/python_train_model_CNN_import.png
+.. image:: _static/python_train_model_CNN_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_CNN_default.png
+.. image:: _static/python_train_model_CNN_default.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_CNN_new.png
+.. image:: _static/python_train_model_CNN_new.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center   
 
 - train_model_LSTM()
 
-.. image:: _static/python_train_model_LSTM_import.png
+.. image:: _static/python_train_model_LSTM_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_LSTM_default.png
+.. image:: _static/python_train_model_LSTM_default.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_train_model_LSTM_new.png
+.. image:: _static/python_train_model_LSTM_new.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -133,61 +133,61 @@ una lista contenente i nuovi testi.
 
 - Dense_model_prediction()
 
-.. image:: _static/python_model_prediction_dense_import.png
+.. image:: _static/python_model_prediction_dense_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_dense.png
+.. image:: _static/python_model_prediction_dense.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - CNN_model_prediction()
 
-.. image:: _static/python_model_prediction_CNN_import.png
+.. image:: _static/python_model_prediction_CNN_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_CNN.png
+.. image:: _static/python_model_prediction_CNN.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - LSTM_model_prediction()
 
-.. image:: _static/python_model_prediction_LSTM_import.png
+.. image:: _static/python_model_prediction_LSTM_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_LSTM.png
+.. image:: _static/python_model_prediction_LSTM.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - Dense_model_new_prediction()
 
-.. image:: _static/python_model_prediction_dense_testi_import.png
+.. image:: _static/python_model_prediction_dense_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_dense_testi.png
+.. image:: _static/python_model_prediction_dense_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - CNN_model_new_prediction()
 
-.. image:: _static/python_model_prediction_CNN_testi_import.png
+.. image:: _static/python_model_prediction_CNN_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_CNN_testi.png
+.. image:: _static/python_model_prediction_CNN_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - LSTM_model_new_prediction()
 
-.. image:: _static/python_model_prediction_LSTM_testi_import.png
+.. image:: _static/python_model_prediction_LSTM_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_model_prediction_LSTM_testi.png
+.. image:: _static/python_model_prediction_LSTM_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
@@ -202,61 +202,61 @@ trained_Dense_model_new_prediction(), trained_CNN_model_new_prediction() e train
 
 - trained_Dense_model_prediction()
 
-.. image:: _static/python_new_model_prediction_dense_import.png
+.. image:: _static/python_new_model_prediction_dense_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_dense.png
+.. image:: _static/python_new_model_prediction_dense.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - trained_CNN_model_prediction()
 
-.. image:: _static/python_new_model_prediction_CNN_import.png
+.. image:: _static/python_new_model_prediction_CNN_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_CNN.png
+.. image:: _static/python_new_model_prediction_CNN.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - trained_LSTM_model_prediction()
 
-.. image:: _static/python_new_model_prediction_LSTM_import.png
+.. image:: _static/python_new_model_prediction_LSTM_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_LSTM.png
+.. image:: _static/python_new_model_prediction_LSTM.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - trained_Dense_model_new_prediction()
 
-.. image:: _static/python_new_model_prediction_dense_testi_import.png
+.. image:: _static/python_new_model_prediction_dense_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_dense_testi.png
+.. image:: _static/python_new_model_prediction_dense_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - trained_CNN_model_new_prediction()
 
-.. image:: _static/python_new_model_prediction_CNN_testi_import.png
+.. image:: _static/python_new_model_prediction_CNN_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_CNN_testi.png
+.. image:: _static/python_new_model_prediction_CNN_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
 - trained_LSTM_model_new_prediction()
 
-.. image:: _static/python_new_model_prediction_LSTM_testi_import.png
+.. image:: _static/python_new_model_prediction_LSTM_testi_import.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-.. image:: _static/python_new_model_prediction_LSTM_testi.png
+.. image:: _static/python_new_model_prediction_LSTM_testi.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
