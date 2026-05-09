@@ -19,6 +19,7 @@ rst_prolog = """
 .. |Sphinx| replace:: `Sphinx <https://www.sphinx-doc.org/en/master/>`__
 .. |numpy| replace:: `NumPy <https://numpy.org/>`__
 .. |GitHub| replace:: `GitHub <https://github.com/>`__
+.. |INSPIRE-HEP| replace:: `INSPIRE-HEP <https://inspirehep.net/>`__
 """
 
 # -- General configuration ---------------------------------------------------
