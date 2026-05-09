@@ -16,7 +16,7 @@ Successivamente si deve eseguire il comando qui sotto per installare la liberia,
    :alt: Istallazione del pacchetto.
    :align: center
 
-Una volta installato sarà possibile utilizzare sia le diverse funzioni per ottenere il dataset di articoli scientifici da INSPIRE-HEP,
+Una volta installato sarà possibile utilizzare sia le diverse funzioni per ottenere il dataset di articoli scientifici da |INSPIRE-HEP|,
 che la funzioni e gli script per allenare i modelli e ottenere delle predizioni. 
 In particolare utilizzando lo script utils.py è possibile scaricare il dataset e i modelli pre-allenati di default, che sono contenuti
 nella Release del repositorio.
@@ -47,7 +47,7 @@ Per ottenere un dataset da fornire in input alle reti è necessario eseguire in 
 
 download_hep_ph_batches()
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-La funzione download_hep_ph_batches() permette di ottenere un dataset di articoli scaricati da INSPIRE-HEP.
+La funzione download_hep_ph_batches() permette di ottenere un dataset di articoli scaricati da |INSPIRE-HEP|.
 Per modificare i valori degli argomenti della funzione è necessario utilizzare la funzione in una sessione python;
 da terminale è possibile scaricare il dataset solamente con le impostazioni di default. Per ulteriori informazioni
 sulla funzione consultare la sezione dataset.
@@ -285,7 +285,7 @@ Per ottenere il dataset necessario ad allenare i modelli di rete neurale sono di
 
 raw_final_dataset.py
 ~~~~~~~~~~~~~~~~~~~~
-Questo script permette di ottenere un dataset di articoli scaricati da INSPIRE-HEP. Utilizzando lo script non è possibile cambiare il numero di articoli
+Questo script permette di ottenere un dataset di articoli scaricati da |INSPIRE-HEP|. Utilizzando lo script non è possibile cambiare il numero di articoli
 scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare la sezione Dataset.
 
 .. figure:: _static/terminale_raw_final_dataset.PNG
