@@ -5,7 +5,7 @@ Modelli e Ottimizzazione
 Si è scelto di utilizzare tre modelli diversi per classificare gli articoli utilizzando le keywords come labels. I modelli sono stati
 ottimizzati e i vari passaggi delle ottimizzazioni sono visibili nel pdf INSERIRE NOME PDF presente nel repositorio.
 Nella cartella models saranno disponibili dei modelli pre-allenati, dopo aver eseguito lo script utils.py o la funzione download_assets(). Ciascun modello è implementato attraverso la libreria tensorflow,
-che include Keras. Di conseguenza per utilizzare questi modelli sarà necessario avere una versione di python non superiore
+che include Keras. Di conseguenza per utilizzare questi modelli sarà necessario avere una versione di Python non superiore
 alla 3.11.
 Il dataset è stato splittato prendendo l'80% come dati di training, il 10% come dati di validazione e il restante 10% come dati di test.
 Nella funzione che separa il dataset è anche eseguito il grafico della distribuzione della lunghezza dei testi. Prima di essere processati,
@@ -69,7 +69,7 @@ i file:
 - "data/processed/final_article_normalized_optimal_clustering.json"
 - "data/processed/final_dataset_binary_classes_optimal_clustering.npy"
 
-mentre per utilizzare i dataset ottenuti dagli script exploratory_data_analysis.py e keywords_bianrization.py la stringa dovrà essere "new", per utilizzare
+mentre per utilizzare i dataset ottenuti dagli script exploratory_data_analysis.py e keywords_binarization.py la stringa dovrà essere "new", per utilizzare
 i file:
 
 - "data_new/processed/new_article_clustering.json"
