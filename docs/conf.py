@@ -20,6 +20,7 @@ rst_prolog = """
 .. |numpy| replace:: `NumPy <https://numpy.org/>`__
 .. |GitHub| replace:: `GitHub <https://github.com/>`__
 .. |INSPIRE-HEP| replace:: `INSPIRE-HEP <https://inspirehep.net/>`__
+.. |arXiv| replace:: `arXiv <https://arxiv.org/archive/hep-ph>`__
 """
 
 # -- General configuration ---------------------------------------------------
