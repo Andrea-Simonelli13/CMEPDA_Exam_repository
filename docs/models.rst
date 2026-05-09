@@ -4,7 +4,7 @@ Modelli e Ottimizzazione
 
 Si è scelto di utilizzare tre modelli diversi per classificare gli articoli utilizzando le keywords come labels. I modelli sono stati
 ottimizzati e i vari passaggi delle ottimizzazioni sono visibili nel pdf INSERIRE NOME PDF presente nel repositorio.
-I modelli sono salvati nella cartella models del repositorio. Ciascun modello è implementato attraverso la libreria tensorflow,
+Nella cartella models saranno disponibili dei modelli pre-allenati, dopo aver eseguito lo script utils.py o la funzione download_assets(). Ciascun modello è implementato attraverso la libreria tensorflow,
 che include Keras. Di conseguenza per utilizzare questi modelli sarà necessario avere una versione di python non superiore
 alla 3.11.
 Il dataset è stato splittato prendendo l'80% come dati di training, il 10% come dati di validazione e il restante 10% come dati di test.
