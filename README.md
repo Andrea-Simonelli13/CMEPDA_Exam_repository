@@ -1,4 +1,4 @@
 # CMEPDA_Exam_repository
-Repositorio creato per l'esame di CMEPDA
+
 Questo repositorio contiene gli script necessari per classificare articoli scientifici in base alle keywords. Installando il pacchetto di questo repositorio è possibile scaricare un dataset da HEP-INSPIRE, filtrarlo e utilizzarlo per allenare modelli di rete neurale.
 Per rispettare i limiti di dimensione dei file imposti da github, i dataset e i modelli di default sono inseriti in una Release del repositorio e possono essere scaricati eseguendo da terminale lo script utils.py o la funzione download_assets(). Per maggiori informazioni sull'utilizzo consultare la [Documentazione](https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/).
