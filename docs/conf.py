@@ -21,6 +21,8 @@ rst_prolog = """
 .. |GitHub| replace:: `GitHub <https://github.com/>`__
 .. |INSPIRE-HEP| replace:: `INSPIRE-HEP <https://inspirehep.net/>`__
 .. |arXiv| replace:: `arXiv <https://arxiv.org/archive/hep-ph>`__
+.. |tensorflow| replace:: `tensorflow <https://www.tensorflow.org/>`__
+.. |Keras| replace:: `Keras <https://keras.io/>`__
 """
 
 # -- General configuration ---------------------------------------------------
