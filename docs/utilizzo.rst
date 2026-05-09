@@ -29,7 +29,7 @@ nella Release del repositorio.
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-Dopo aver eseguito lo script da terminale o la funzione download_assets() da sessiono o script python, il dataset sarà nella cartella
+Dopo aver eseguito lo script da terminale o la funzione download_assets() da sessione o script python, il dataset sarà nella cartella
 data; i modelli pre-allenati saranno nella cartella models.
 Di seguito sono riportati esempi di utilizzo. Da terminale sarà possibile utilizzare gli script con parametri di default, in sessione
 python sarà possibile modificare gli argomenti delle funzioni.
@@ -41,7 +41,8 @@ Gli esempi riportati di seguito si riferiscono all'utilizzo delle funzioni all'i
 Dataset
 -------
 Le funzioni riportate di seguito sono funzioni necessarie per ottenere un dataset pronto per essere usato per l'allenamento
-dei modelli di rete neurale. Nel repositorio è già presente un dataset completo da poter utilizzare nella cartella data.
+dei modelli di rete neurale. Nel repositorio è già presente un dataset completo da poter utilizzare nella cartella data se
+è stata eseguita la funzione download_assets().
 Per ottenere un dataset da fornire in input alle reti è necessario eseguire in ordine le seguenti funzioni da sessione python.
 
 download_hep_ph_batches()
@@ -66,7 +67,7 @@ funzione download_hep_ph_batches(). Per ulteriori informazioni consultare la sez
 
 keywords_binarization()
 ~~~~~~~~~~~~~~~~~~~~~~~
-La funzione keywords_binarization() permette di trasformare le keywords di ogni articoli in labels da poter essere utilizzate
+La funzione keywords_binarization() permette di trasformare le keywords di ogni articolo in labels da poter essere utilizzate
 per l'allenamento dei modelli di deep learning. Questa funzione deve essere utilizzata solamente dopo aver eseguito la funzione
 exploratory_data_analysis(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
 
@@ -276,7 +277,7 @@ trained_Dense_model_new_prediction(), trained_CNN_model_new_prediction() e train
 
 Terminale
 =========
-Per eseguire gli script da terminale è necessario eseguire i comandi riportati di seguito dopo aver istallato il paccheto del repositorio.
+Per eseguire gli script da terminale è necessario eseguire i comandi riportati di seguito dopo aver installato il pacchetto del repositorio.
 
 Dataset
 -------
@@ -312,7 +313,7 @@ dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informa
 show_clusters.py
 ~~~~~~~~~~~~~~~~
 Questo script permette di stampare le keywords ottenute dopo il clustering e di vedere quali keyword sono state inserite nel cluster
-che corrisponde a quella keyword.
+che corrisponde a quella keyword. Inoltre, vengono stampate le keywords selezionate per l'ellenamento dei modelli.
 
 .. image:: _static/terminale_show_clusters.PNG
    :alt: Esempio di utilizzo dello script da terminale.
@@ -356,7 +357,7 @@ seguito da new se si vuole utilizzare il nuovo dataset oppure dafault se si vuol
 
 model_predictions.py
 ~~~~~~~~~~~~~~~~~~~~
-Questo script permette di utilizzare i modelli allenati con il dataset di default. Dopo il nome dello script deve essere indicato il tipo di modello
+Questo script permette di utilizzare i modelli pre-allenati con il dataset di default. Dopo il nome dello script deve essere indicato il tipo di modello
 che si intende utilizzare. In questo modo saranno stampati la struttura della rete, alcuni esempi di predizioni confrontate con le originali e
 i grafici che riportano i valori delle metriche al variare della soglia decisionale.
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo

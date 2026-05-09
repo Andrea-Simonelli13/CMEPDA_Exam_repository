@@ -14,7 +14,7 @@ L'algoritmo BIRCH utlizza la distanza euclidea tra due vettori per raggrupparli 
 AgglomerativeClustering. Si usa anche questo secondo algoritmo perchè non è necessario specificare il numero di cluster che si vuole
 ottenere, ma i cluster del BIRCH vengono raggruppati in modo tale da minimizzare la varianza interna al cluster e creare cluster simili.
 Più nel dettaglio, inizialmente all'AgglomerativeClustering sono forniti i cluster processati dall'algoritmo BIRCH. L'AgglomerativeClustering
-cerca di unire a coppie tutti questi cluster in modo tale da avere l'aumento minore di dispersione. L'algortimo perferirà unire
+cerca di unire a coppie tutti questi cluster in modo tale da avere l'aumento minore di dispersione. L'algoritmo perferirà unire
 due cluster piccoli piuttosto che uno grande e uno piccolo, a meno che quest'ultimi non siano vicinissimi. L'AgglomerativeClustering
 prende come parametro distance_threshold che indica il limite massimo di varianza che si è disposti ad osservare. Per scegliere questo parametro
 si grafica il numero di cluster ottenuti in funzione del valore di distance_threshold, e tramite il metodo KneeLocator, si trova il valore ottimale da inserire.
@@ -26,7 +26,7 @@ più frequenti fino a raggiungere una copertura minima dell'85%.
 Infine utilizzando la mappa si sostituiscono le keywords vecchie con quelle nuove, scartando gli articoli che rimangono senza keywords.
 Alla fine della funzione nella cartella data_new/processed è possibile trovare il dataset con le nuove keywords nel file new_article_clustering.json e la mappa
 delle keywords nel file new_keywords_map.json. Dei file di default sono contenuti nella cartella data/processed.
-Il dataset così ottenuto viene passato allo script keywords_binarization.py.
+
 Dopo lo script o la funzione exploratory_data_analysis deve essere sempre utilizzato lo script o la funzione keywords_binarization. Questo script contiene una funzione che binarizza le liste di keywords
 di ogni articolo. Per fare questo viene utilizzato un modulo di sklearn chiamato MultiLabelBinarizer che prende in ingresso la lista di keywords di ogni
 articolo e le binarizza trasformandole in liste di dimensione pari al numero di keywords totali. Queste liste avranno il valore '1' nella posizione corrispondente
