@@ -19,7 +19,7 @@ Ogni modello conterrà un layer di tipo Embedding. Questo layer prende in ingres
 simili saranno rappresentate da vettori simili.
 Il primo modello è un modello composto principalmente da layer di tipo Dense. Questo modello è formato da:
 
-- Embedding(input_dim=25001, output_dim=256)
+- Embedding(input_dim=25001, output_dim=512)
 - GlobalMaxPooling1D()
 - BatchNormalization()
 - Dense(1024, activation='relu')
@@ -29,7 +29,7 @@ Il primo modello è un modello composto principalmente da layer di tipo Dense. Q
 - BatchNormalization()
 - Dense(y_train.shape[1], activation='sigmoid')
 
-Il secondo modello, oltre ai layer Dense ed Embedding, utilizza layer di tipo Conv1D che sono in grado di "osservare" più parole contemporaneamente
+Il secondo modello, oltre ai layer Dense ed Embedding, utilizza layers di tipo Conv1D che sono in grado di "osservare" più parole contemporaneamente
 a seconda della grandezza del kernel. Il modello convoluzionale è formato da:
 
 - Embedding(input_dim=25001, output_dim=512)
@@ -47,7 +47,7 @@ a seconda della grandezza del kernel. Il modello convoluzionale è formato da:
 
 Il terzo e ultimo modello invece utilizza un layer di tipo LSTM (Long-Short Term Memory), la rete è quindi composta da:
 
-- Embedding(input_dim=25001, output_dim=256)
+- Embedding(input_dim=25001, output_dim=512)
 - Bidirectional(LSTM(128, retun_sequences=True, dropout=0.2))
 - LayerNormalization()
 - Bidirectional(LSTM(128, retun_sequences=True, dropout=0.2))

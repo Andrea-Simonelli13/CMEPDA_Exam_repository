@@ -43,7 +43,7 @@ Dataset
 Le funzioni riportate di seguito sono funzioni necessarie per ottenere un dataset pronto per essere usato per l'allenamento
 dei modelli di rete neurale. Nel repositorio è già presente un dataset completo da poter utilizzare nella cartella data se
 è stata eseguita la funzione download_assets().
-Per ottenere un dataset da fornire in input alle reti è necessario eseguire in ordine le seguenti funzioni da sessione python.
+Per ottenere un nuovo dataset da fornire in input alle reti è necessario eseguire in ordine le seguenti funzioni da sessione python.
 
 download_hep_ph_batches()
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -68,7 +68,7 @@ funzione download_hep_ph_batches(). Per ulteriori informazioni consultare la sez
 keywords_binarization()
 ~~~~~~~~~~~~~~~~~~~~~~~
 La funzione keywords_binarization() permette di trasformare le keywords di ogni articolo in labels da poter essere utilizzate
-per l'allenamento dei modelli di deep learning. Questa funzione deve essere utilizzata solamente dopo aver eseguito la funzione
+per l'allenamento dei modelli di deep learning. Questa funzione deve essere utilizzata sempre dopo aver eseguito la funzione
 exploratory_data_analysis(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
 
 .. image:: _static/python_keywords_binarization.PNG
@@ -144,7 +144,8 @@ In una sessione o in uno script python si deve utilizzare una delle 6 funzioni a
 scopo. Per ottenere esempi di predizioni e le prestazioni dei modelli di default le funzioni sono: Dense_model_prediction(), 
 CNN_model_prediction() e LSTM_model_prediction(). Per ottenere le keywords su nuovi testi le funzioni da utilizzare sono:
 Dense_model_new_prediction(), CNN_model_new_prediction() e LSTM_model_new_prediction(); a queste funzioni dovrà essere passata
-una lista contenente i nuovi testi.
+una lista contenente i nuovi testi. Queste funzioni possono essere utilizzate solamente se è stato eseguito li script utils.py
+o la funzione download_assets().
 
 - Dense_model_prediction()
 
@@ -214,6 +215,8 @@ keywords_binarization(), si devono usare queste funzioni a seconda del modello: 
 trained_LSTM_model_prediction().
 Per ottenere le predizioni su nuovi testi sarà sufficiente passare come argomento una lista contenente i testi alle funzioni:
 trained_Dense_model_new_prediction(), trained_CNN_model_new_prediction() e trained_LSTM_model_new_prediction().
+Sarà possibile utilizzare queste funzioni solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli aleno una volta dopo
+l'istallazione del pacchetto.
 
 - trained_Dense_model_prediction()
 
@@ -303,7 +306,7 @@ Per ultriori informazioni consultare la sezione Exploratory Data Analysis.
 
 keywords_binarization.py
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Questo script permette di ottenere i label binari da utilizzare durante l'allenamento delle reti neurali. Questo script deve essere usato
+Questo script permette di ottenere i label binari da utilizzare durante l'allenamento delle reti neurali. Questo script deve essere sempre usato
 dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informazioni consultare la sezione Exploratory Data Analysis.
 
 .. image:: _static/terminale_keywords_binarization.PNG
@@ -327,7 +330,7 @@ Per utilizzare questi script è necessario aver installato una versione di pytho
 
 train_models.py
 ~~~~~~~~~~~~~~~
-Questo script permette di allenare modelli di rete neurale sul nuovo dataset ottenuto utilizzando gli script della sezione Dataset o sul dataset di default.
+Questo script permette di allenare modelli di rete neurale sul nuovo dataset ottenuto utilizzando gli script riportati qui sopra o sul dataset di default.
 Per utilizzare questo script è necessario inserire, dopo il nome dello script, il tipo di modello che si vuole allenare (Dense, CNN o LSTM)
 seguito da new se si vuole utilizzare il nuovo dataset oppure dafault se si vuole utilizzare il dataset di default.
 
@@ -361,7 +364,7 @@ Questo script permette di utilizzare i modelli pre-allenati con il dataset di de
 che si intende utilizzare. In questo modo saranno stampati la struttura della rete, alcuni esempi di predizioni confrontate con le originali e
 i grafici che riportano i valori delle metriche al variare della soglia decisionale.
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
-di modello.
+di modello. Questo script può essere utilizzato solo se è stato eseguito lo script utils.py o la funzione download_assets().
 
 .. image:: _static/terminale_model_prediction_dense.PNG
    :alt: Esempio di utilizzo dello script da terminale.
@@ -393,7 +396,8 @@ Questo script permette di utilizzare i modelli allenati con il dataset ottenuto 
 Dopo il nome dello script deve essere indicato il tipo di modello che si intende utilizzare. In questo modo saranno stampati la struttura della rete,
 alcuni esempi di predizioni confrontate con le originali e i grafici che riportano i valori delle metriche al variare della soglia decisionale.
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
-di modello.
+di modello. Sarà possibile utilizzare lo script solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli aleno una volta dopo
+l'istallazione del pacchetto.
 
 .. image:: _static/terminale_new_model_prediction_dense.PNG
    :alt: Esempio di utilizzo dello script da terminale.

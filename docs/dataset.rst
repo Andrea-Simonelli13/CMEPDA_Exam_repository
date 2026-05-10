@@ -3,7 +3,7 @@ Dataset
 =======
 Il dataset necessario per questo progetto è composto da articoli scaricati inviando una richiesta HTTP all'API di
 |INSPIRE-HEP|. Per fare questo si utilizza lo script raw_final_dataset.py. Questo scrtipt contiene una funzione chiamata 
-download_hep_ph_batches(bath_size, max_papers) che prende come argomenti il numero massimo di articoli da scaricare 
+download_hep_ph_batches(batch_size, max_papers) che prende come argomenti il numero massimo di articoli da scaricare 
 e la dimensione del batch di articoli. La funzione invia richieste HTTP all'API di |INSPIRE-HEP| divise in anni di
 pubblicazione (1991-2024) degli articoli e filtrando per la categoria |arXiv| hep-ph. Per ogni anno di pubblicazione vengono scaricati
 un numero di articoli pari alla dimensione del batch impostata fino ad arrivare al massimo di articoli da scaricare impostato.
