@@ -23,6 +23,8 @@ rst_prolog = """
 .. |arXiv| replace:: `arXiv <https://arxiv.org/archive/hep-ph>`__
 .. |tensorflow| replace:: `tensorflow <https://www.tensorflow.org/>`__
 .. |Keras| replace:: `Keras <https://keras.io/>`__
+.. |Dataset| replace:: `Dataset <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/dataset.html>`__
+.. |Exploratory Data Analysis| replace:: `Exploratory Data Analisys <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/EDA.html>`__
 """
 
 # -- General configuration ---------------------------------------------------

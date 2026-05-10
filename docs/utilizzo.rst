@@ -50,7 +50,7 @@ download_hep_ph_batches()
 La funzione download_hep_ph_batches() permette di ottenere un dataset di articoli scaricati da |INSPIRE-HEP|.
 Per modificare i valori degli argomenti della funzione è necessario utilizzare la funzione in una sessione python;
 da terminale è possibile scaricare il dataset solamente con le impostazioni di default. Per ulteriori informazioni
-sulla funzione consultare la sezione dataset.
+sulla funzione consultare la sezione |Dataset|.
 
 .. image:: _static/python_raw_final_dataset.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
@@ -59,7 +59,7 @@ sulla funzione consultare la sezione dataset.
 exploratory_data_analysis()
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 La funzione exploratory_data_analysis() permette di eseguire il clustering delle keywords del dataset scaricato con la
-funzione download_hep_ph_batches(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
+funzione download_hep_ph_batches(). Per ulteriori informazioni consultare la sezione |Exploratory Data Analysis| della documentazione.
 
 .. image:: _static/python_exploratory_data_analysis.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
@@ -69,7 +69,7 @@ keywords_binarization()
 ~~~~~~~~~~~~~~~~~~~~~~~
 La funzione keywords_binarization() permette di trasformare le keywords di ogni articolo in labels da poter essere utilizzate
 per l'allenamento dei modelli di deep learning. Questa funzione deve essere utilizzata sempre dopo aver eseguito la funzione
-exploratory_data_analysis(). Per ulteriori informazioni consultare la sezione EDA della documentazione.
+exploratory_data_analysis(). Per ulteriori informazioni consultare la sezione |Exploratory Data Analysis| della documentazione.
 
 .. image:: _static/python_keywords_binarization.PNG
    :alt: Esempio di utilizzo della funzione in una sessione python.
@@ -215,7 +215,7 @@ keywords_binarization(), si devono usare queste funzioni a seconda del modello: 
 trained_LSTM_model_prediction().
 Per ottenere le predizioni su nuovi testi sarà sufficiente passare come argomento una lista contenente i testi alle funzioni:
 trained_Dense_model_new_prediction(), trained_CNN_model_new_prediction() e trained_LSTM_model_new_prediction().
-Sarà possibile utilizzare queste funzioni solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli aleno una volta dopo
+Sarà possibile utilizzare queste funzioni solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli almeno una volta dopo
 l'istallazione del pacchetto.
 
 - trained_Dense_model_prediction()
@@ -289,7 +289,7 @@ Per ottenere il dataset necessario ad allenare i modelli di rete neurale sono di
 raw_final_dataset.py
 ~~~~~~~~~~~~~~~~~~~~
 Questo script permette di ottenere un dataset di articoli scaricati da |INSPIRE-HEP|. Utilizzando lo script non è possibile cambiare il numero di articoli
-scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare la sezione Dataset.
+scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare la sezione |Dataset|.
 
 .. figure:: _static/terminale_raw_final_dataset.PNG
    :alt: Esempio di utilizzo dello script da terminale.
@@ -298,7 +298,7 @@ scaricati (batch_size=50, max_papers=5000). Per ultriori informazioni consultare
 exploratory_data_analysis.py
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Questo script permette di eseguire il clustering delle keywords del dataset scaricato e generare un nuovo dataset con le nuove keywords.
-Per ultriori informazioni consultare la sezione Exploratory Data Analysis.
+Per ultriori informazioni consultare la sezione |Exploratory Data Analysis|.
 
 .. image:: _static/terminale_exploratory_data_analysis.PNG
    :alt: Esempio di utilizzo dello script da terminale.
@@ -307,7 +307,7 @@ Per ultriori informazioni consultare la sezione Exploratory Data Analysis.
 keywords_binarization.py
 ~~~~~~~~~~~~~~~~~~~~~~~~
 Questo script permette di ottenere i label binari da utilizzare durante l'allenamento delle reti neurali. Questo script deve essere sempre usato
-dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informazioni consultare la sezione Exploratory Data Analysis.
+dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informazioni consultare la sezione |Exploratory Data Analysis|.
 
 .. image:: _static/terminale_keywords_binarization.PNG
    :alt: Esempio di utilizzo dello script da terminale.
@@ -396,7 +396,7 @@ Questo script permette di utilizzare i modelli allenati con il dataset ottenuto 
 Dopo il nome dello script deve essere indicato il tipo di modello che si intende utilizzare. In questo modo saranno stampati la struttura della rete,
 alcuni esempi di predizioni confrontate con le originali e i grafici che riportano i valori delle metriche al variare della soglia decisionale.
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
-di modello. Sarà possibile utilizzare lo script solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli aleno una volta dopo
+di modello. Sarà possibile utilizzare lo script solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli almeno una volta dopo
 l'istallazione del pacchetto.
 
 .. image:: _static/terminale_new_model_prediction_dense.PNG
