@@ -85,7 +85,7 @@ def exploratory_data_analysis():
     with open(json_folder, "r", encoding="utf-8") as f:
 
         # json.load legge il file e lo converte in una struttura Python
-        # nel tuo caso diventa una lista di dizionari (uno per ogni articolo)
+        # in questo caso diventa una lista di dizionari (uno per ogni articolo)
         data = json.load(f)
 
 
@@ -114,7 +114,7 @@ def exploratory_data_analysis():
         # extend aggiunge TUTTI gli elementi della lista
         all_keywords.extend(d["keywords"])
 
-    #fa il grafico della frequenza delle keywords
+
     counter_raw = Counter(all_keywords)
 
 

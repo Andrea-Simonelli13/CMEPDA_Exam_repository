@@ -94,7 +94,7 @@ Training
 ~~~~~~~~
 Per l'allenamento dei modelli sul nuovo dataset c'è una distinzione nell'utilizzo da terminale e da sessione python.
 In python ci sono tre funzioni distinte per allenare uno dei tre modelli: train_model_Dense(), train_model_CNN() e train_model_LSTM().
-Per ulteriori informazioni sugli argomenti da utilizzare consultare la sezione models della documentazione.
+Per ulteriori informazioni sugli argomenti da utilizzare consultare la sezione |Modelli e Ottimizzazione| della documentazione.
 
 - train_model_Dense()
 

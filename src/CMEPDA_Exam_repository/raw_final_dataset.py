@@ -89,7 +89,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                         arxiv_title = title.get("title", "")
                         break
 
-                #abstracts può contenere più di un titolo.
+                #abstracts può contenere più di un abstract.
                 #Quindi si prende il primo abstract con "source" == "arXiv"
                 arxiv_abstract = ""
                 abstracts = metadata.get("abstracts", [{}])

@@ -24,7 +24,8 @@ rst_prolog = """
 .. |tensorflow| replace:: `tensorflow <https://www.tensorflow.org/>`__
 .. |Keras| replace:: `Keras <https://keras.io/>`__
 .. |Dataset| replace:: `Dataset <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/dataset.html>`__
-.. |Exploratory Data Analysis| replace:: `Exploratory Data Analisys <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/EDA.html>`__
+.. |Exploratory Data Analysis| replace:: `Exploratory Data Analysis <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/EDA.html>`__
+.. |Modelli e Ottimizzazione| replace:: `Modelli e Ottimizzazione <https://andrea-simonelli13.github.io/CMEPDA_Exam_repository/models.html>`__
 """
 
 # -- General configuration ---------------------------------------------------

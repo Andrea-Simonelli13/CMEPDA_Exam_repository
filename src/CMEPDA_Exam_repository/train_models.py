@@ -116,7 +116,7 @@ def plot_training_history_f1score(history):
          history (history): history del training del modello.
     """
 
-    plt.figure(figsize=(20, 5))
+    plt.figure(figsize=(16, 4))#20 #5
 
     # 1. Plot della LOSS
     plt.subplot(1, 4, 1)
