@@ -12,8 +12,8 @@ si consiglia di impostare un batch_size inferiore ai 700 e al massimo un max_pap
 batch_size in modo tale che max_papers sia un multiplo. Infatti se max_papers non è un multiplo di batch_size, il numero
 di articoli scaricati per anno sarà il primo multiplo di batch_size più grande di max_papers.
 Per ogni articolo che viene scaricato si acquisisce titolo e abstract di |arXiv|, che verrà utilizzato come testo, e le
-keywords di |INSPIRE-HEP|, che verranno usate come labels per i modelli di deep learning. Per ogni articolo viene creata una lista
-di python contenente due dizionari, uno contenente il testo e uno la lista di keywords. Una volta eseguito lo script, o la funzione, viene
+keywords di |INSPIRE-HEP|, che verranno usate come labels per i modelli di deep learning. Per ogni articolo viene creata un dizionario
+di python contenente il testo e la lista di keywords. Una volta eseguito lo script, o la funzione, viene
 salvato nella cartella data_new/raw un file new_raw_dataset.json contenente il dataset. Nella Release del repositorio è presente un dataset di default
 con più di 90000 articoli. Questo dataset verrà scaricato e inserito nella cartella data/raw dopo che è stato eseguito lo script utils.py o la funzione
 download_assets().

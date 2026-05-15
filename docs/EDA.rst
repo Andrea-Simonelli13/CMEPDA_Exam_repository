@@ -7,7 +7,7 @@ che la rete dovrà essere in grado di ricostruire dal testo.
 Per prima cosa si contano le keywords uniche e si "puliscono" le stringhe delle keywords da elementi come trattini, underscore
 e i due punti. Successivamente si esegue un embedding utilizzando un modello pre-allenato di SentenceTransformer ("all-MiniLM-L6-v2").
 Questo modello vettorizza le parole in modo tale che parole simili siano rappresentate da vettori
-con un alta cosine similarity, ovvero in modo tale che vettori di parole simili abbiano un piccolo coseno dell'angolo compreso tra essi.
+con un'alta cosine similarity, ovvero in modo tale che vettori di parole simili abbiano un piccolo coseno dell'angolo compreso tra essi.
 Successivamente è necessario normalizzare i vettori in output dal SentenceTransformer. Si fa questo perchè per ridurre il numero di keywords
 si esegue un algoritmo unsupervised di clustering. Per il clustering si utilizzano due algoritmi combinati: Birch e AgglomerativeClustering.
 L'algoritmo BIRCH utlizza la distanza euclidea tra due vettori per raggrupparli in cluster e i cluster creati dal BIRCH sono passati all'
@@ -22,7 +22,7 @@ Il KneeLocator serve a trovare il punto in cui non si ha più  una diminuzione s
 Una volta che l'algoritmo ha ridotto il numero di clusters, viene creata un mappa (dizionario di python) che associa le vecchie keywords
 a quelle nuove. Come nuove keywords sono scelte le più frequenti di ogni cluster.
 A questo punto si filtrano le keywords scegliendo solo quelle con una frequenza di almeno 200 e si considerano solo le keywords
-più frequenti fino a raggiungere una copertura minima dell'85%.
+più frequenti fino a raggiungere una copertura minima dell'85% del totale delle keywords.
 Infine utilizzando la mappa si sostituiscono le keywords vecchie con quelle nuove, scartando gli articoli che rimangono senza keywords.
 Alla fine della funzione nella cartella data_new/processed è possibile trovare il dataset con le nuove keywords nel file new_article_clustering.json e la mappa
 delle keywords nel file new_keywords_map.json. Dei file di default sono contenuti nella cartella data/processed.

@@ -87,7 +87,7 @@ Inoltre stampa tutte le keywords che sono state selezionate per essere utilizzat
 Modelli di rete neurale
 -----------------------
 Le funzioni riportate di seguito sono necessarie per l'allenamento delle reti nuerali sul nuovo dataset scaricato con le funzioni
-della sezione precedente. Inoltre, sono riportate funzioni per ottenere le prestazioni e le predizioni sia dei modelli di default
+della sezione precedente. Inoltre, sono riportate funzioni per ottenere le prestazioni e le predizioni sia dei modelli pre-allenati
 che dei nuovi modelli allenati.
 
 Training
@@ -141,10 +141,10 @@ Per ulteriori informazioni sugli argomenti da utilizzare consultare la sezione |
 Predizioni dei modelli di default
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In una sessione o in uno script python si deve utilizzare una delle 6 funzioni a seconda del tipo di modello e dello
-scopo. Per ottenere esempi di predizioni e le prestazioni dei modelli di default le funzioni sono: Dense_model_prediction(), 
+scopo. Per ottenere esempi di predizioni e le prestazioni dei modelli pre-allenati le funzioni sono: Dense_model_prediction(), 
 CNN_model_prediction() e LSTM_model_prediction(). Per ottenere le keywords su nuovi testi le funzioni da utilizzare sono:
 Dense_model_new_prediction(), CNN_model_new_prediction() e LSTM_model_new_prediction(); a queste funzioni dovrà essere passata
-una lista contenente i nuovi testi. Queste funzioni possono essere utilizzate solamente se è stato eseguito li script utils.py
+una lista contenente i nuovi testi. Queste funzioni possono essere utilizzate solamente se è stato eseguito lo script utils.py
 o la funzione download_assets().
 
 - Dense_model_prediction()
@@ -216,7 +216,7 @@ trained_LSTM_model_prediction().
 Per ottenere le predizioni su nuovi testi sarà sufficiente passare come argomento una lista contenente i testi alle funzioni:
 trained_Dense_model_new_prediction(), trained_CNN_model_new_prediction() e trained_LSTM_model_new_prediction().
 Sarà possibile utilizzare queste funzioni solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli almeno una volta dopo
-l'istallazione del pacchetto.
+l'installazione del pacchetto.
 
 - trained_Dense_model_prediction()
 
@@ -325,7 +325,7 @@ che corrisponde a quella keyword. Inoltre, vengono stampate le keywords selezion
 Modelli di rete neurale
 -----------------------
 In questa sezione sono illustrati esempi di come utilizzare gli script da terminale per allenare i modelli su nuovi dataset, ottenere le predizioni e
-le prestazioni dei modelli sul dataset di default, oppure utilizzare i modelli di default o i nuovi modelli per ottenere le keywords su nuovi testi.
+le prestazioni dei modelli sul dataset di default, oppure utilizzare i modelli pre-allenati o i nuovi modelli per ottenere le keywords su nuovi testi.
 Per utilizzare questi script è necessario aver installato una versione di python non superiore alla 3.11
 
 train_models.py
@@ -397,7 +397,7 @@ Dopo il nome dello script deve essere indicato il tipo di modello che si intende
 alcuni esempi di predizioni confrontate con le originali e i grafici che riportano i valori delle metriche al variare della soglia decisionale.
 Se si intende utilizzare uno di questi modelli per ottenere le keywords di nuovi articoli, sarà sufficiente inserire i testi tra virgolette dopo il tipo
 di modello. Sarà possibile utilizzare lo script solamente se è stato ottenuto il nuovo dataset e sono stati allenati i nuovi modelli almeno una volta dopo
-l'istallazione del pacchetto.
+l'installazione del pacchetto.
 
 .. image:: _static/terminale_new_model_prediction_dense.PNG
    :alt: Esempio di utilizzo dello script da terminale.

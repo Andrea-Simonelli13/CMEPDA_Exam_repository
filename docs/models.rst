@@ -4,7 +4,7 @@ Modelli e Ottimizzazione
 
 Si è scelto di utilizzare tre modelli diversi per classificare gli articoli utilizzando le keywords come labels. I modelli sono stati
 ottimizzati e i vari passaggi delle ottimizzazioni sono visibili nel pdf Ottimizzazione_modelli_CMEPDA.pdf presente nel repositorio.
-Nella cartella models saranno disponibili dei modelli pre-allenati, dopo aver eseguito lo script utils.py o la funzione download_assets(). Ciascun modello è implementato attraverso la libreria |tensorflow|,
+Nella cartella models saranno disponibili i pesi di modelli pre-allenati, dopo aver eseguito lo script utils.py o la funzione download_assets(). Ciascun modello è implementato attraverso la libreria |tensorflow|,
 che include |Keras|. Di conseguenza per utilizzare questi modelli sarà necessario avere una versione di |Python| non superiore
 alla 3.11.
 Il dataset è stato splittato prendendo l'80% come dati di training, il 10% come dati di validazione e il restante 10% come dati di test.
@@ -78,4 +78,4 @@ i file:
 I modelli allenati possono essere utilizzati per ottenere delle predizioni su nuovi testi. Nello script new_model_predictions.py sono definite diverse funzioni
 a seconda dello scopo. Sarà infatti possibile ottenere alcune predizioni sui dati di test, dai quali si ricavano le prestazioni della rete al variare della soglia decisionale
 delle metriche. Inoltre è possibile ottenere delle possibili keywords su nuovi articoli.
-Se si vuole utilizzare i modelli di default sarà sufficiente utilizzare lo script model_predictions.py che ha le stesse funzionalità dello script precedente.
+Se si vuole utilizzare i modelli pre-allenati sarà sufficiente utilizzare lo script model_predictions.py che ha le stesse funzionalità dello script precedente.
