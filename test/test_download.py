@@ -40,6 +40,6 @@ def test_download_retry_mechanism(mock_open, mock_sleep, mock_get):
     assert mock_get.call_count == 3
 
     # Verifichiamo che time.sleep sia stato chiamato per le attese (30s e 60s)
-    # La tua funzione fa: 30 * (tentativi + 1)
+    # La funzione fa: 30 * (tentativi + 1)
     assert mock_sleep.call_args_list[0][0][0] == 30
     assert mock_sleep.call_args_list[1][0][0] == 60

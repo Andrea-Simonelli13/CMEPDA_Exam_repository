@@ -53,7 +53,7 @@ def clean_text(text):
     return " ".join(clean_words)
 #-----------------Funzione che divide il dataset in training, vlidation e test---------------
 def data_splitting_pred(texts_file, label_file):
-    '''Funzione che divide il dataset (testi e labels e kewords) in dataset
+    '''Funzione che divide il dataset (testi, labels e kewords) in dataset
     di allenamento, validazione e test.
     Args:
          text_file (string): path al file degli articoli

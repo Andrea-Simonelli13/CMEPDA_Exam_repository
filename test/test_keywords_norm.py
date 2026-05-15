@@ -10,5 +10,7 @@ from CMEPDA_Exam_repository.exploratory_data_analysis import normalize_keywords
     ("Quark: top", "quark  top")
 ])
 def test_normalize_keywords(raw, clean):
+    '''Funzione che testa la normalizzazione del testo delle keywords
+    '''
     assert normalize_keywords(raw) == clean
     assert normalize_keywords(raw) == normalize_keywords(normalize_keywords(raw))

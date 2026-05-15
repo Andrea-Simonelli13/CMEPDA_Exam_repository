@@ -36,7 +36,7 @@ def test_data_splitting_integrity(mock_file, mock_np_load, mock_plt):
     assert len(X_val) == len(y_val)
     assert len(X_test) == len(y_test)
 
-    # Verifica che y_train abbia il numero corretto di colonne (le 5 classi)
+    # Verifica che y_train, y_val e y_test abbia il numero corretto di colonne (le 5 classi)
     assert y_train.shape[1] == 5
     assert y_val.shape[1] == 5
     assert y_test.shape[1] == 5

@@ -10,19 +10,16 @@ import requests
 
 from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 
-def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='data/raw/hep_ph_json'
+def download_hep_ph_batches(batch_size=50, max_papers=5000):
     '''Funzione che scarica e filtra gli articoli di HEP-INSPIRE.
-    Argomenti
-    ---------
-    batch_size : numero
-                 Questo è il numero di articoli per richiesta. Deve essere al massimo 1000,
-                 ma meglio sotto i 700. Valore di default 50.
-    max_papers : numero
-                 Questo è il numero di articoli scaricati da HEP-INPIRE per ogni anno.
-                 L'API di HEP-INSPIRE impone un massimo di 10000. Se max_papers non è un multiplo
-                 di batch_size, il numero totale di articoli sarà il primo multiplo di batch_size
-                 più grande di max_papers. Si consiglia quindi di impostare un valore massimo
-                 intorno ai 9000. Valore di default 5000.
+    Args:
+        batch_size (int) : numero di articoli per richiesta. Deve essere al massimo 1000,
+                           ma meglio sotto i 700. Valore di default 50.
+        max_papers (int) : numero di articoli scaricati da HEP-INPIRE per ogni anno.
+                           L'API di HEP-INSPIRE impone un massimo di 10000. Se max_papers non è un multiplo
+                           di batch_size, il numero totale di articoli sarà il primo multiplo di batch_size
+                           più grande di max_papers. Si consiglia quindi di impostare un valore massimo
+                           intorno ai 9000. Valore di default 5000.
     '''
 
     save_folder = CMEPDA_EXAM_REPOSITORY_DATA_NEW / "raw/new_raw_dataset.json"
@@ -38,7 +35,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
 
             url = "https://inspirehep.net/api/literature/"
             params = {
-                "q": f"arxiv_eprints.categories:hep-ph AND date:{year}", #value
+                "q": f"arxiv_eprints.categories:hep-ph AND date:{year}",
                 "size": batch_size,
                 "page": page,
                 "format": "json"
@@ -109,7 +106,7 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
                 text = arxiv_title + " " + arxiv_abstract
                 dataset.append({
                     "text": text,
-                    "keywords": keywords#", ".join(keywords)
+                    "keywords": keywords
                 })
 
             downloaded += len(papers)
@@ -127,6 +124,6 @@ def download_hep_ph_batches(batch_size=50, max_papers=5000): #, save_folder='dat
 if __name__ == "__main__":
 
     download_hep_ph_batches(
-        batch_size=50, #100
-        max_papers=5000, #9000
+        batch_size=50,
+        max_papers=5000,
     )

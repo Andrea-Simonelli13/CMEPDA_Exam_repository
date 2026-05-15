@@ -72,9 +72,9 @@ def find_optimal_threshold(embeddings, start=0.5, stop=1.5, step=0.05, plot=True
     return optimal_threshold
 
 def exploratory_data_analysis():
-    '''Funzione che esegue l'Exploratory Data Anlysis delle keywords e ne esegue il clustering
+    '''Funzione che esegue l'Exploratory Data Analysis delle keywords e ne esegue il clustering
     per ridurne il numero. Il clustering viene eseguito facendo un embedding delle keywords,
-    i vettori vengono poi procesati con un algoritmo combinato BIRCH + AgglomerativeClustering.
+    i vettori vengono poi processati con un algoritmo combinato BIRCH + AgglomerativeClustering.
     La funzione sostituisce in automatico le nuove keywords nella lista degli articoli e salva sia
     la nuova lista che la mappa che permette di ottenere le keywords da quelle nuove.
     '''
@@ -189,23 +189,8 @@ def exploratory_data_analysis():
     mapped_keywords = [keyword_map.get(k, k) for k in all_keywords]
     counter = Counter(mapped_keywords)
 
-    #grafico della distribuzione della frequenza delle keywords prima e dopo il clustering
-    #max_freq = max(max(counter_raw.values()), max(counter.values()))
-    #bins = np.arange(-0.5, max_freq + 0.5 ,1)
-    #plt.hist(counter_raw.values(), bins=bins, alpha=0.8, label="before clustering")
-    #plt.hist(counter.values(), bins=bins, alpha=0.5, label="after clustering")
-
-    #plt.xlim(0, 50)
-    #plt.ylim(0, 10)
-    #plt.xlabel("Keyword frequency")
-    #plt.ylabel("Number of keywords")
-    #plt.title("Keyword frequency distribution")
-
-    #plt.legend()
-    #plt.show()
-
-    print("freq media prima:", np.mean(list(counter_raw.values())))
-    print("freq media dopo:", np.mean(list(counter.values())))
+    print("freq media prima del clustering:", np.mean(list(counter_raw.values())))
+    print("freq media dopo il clustering:", np.mean(list(counter.values())))
 
 
     #scelgo la frequenza minima che deve avere una keyword nel dataset

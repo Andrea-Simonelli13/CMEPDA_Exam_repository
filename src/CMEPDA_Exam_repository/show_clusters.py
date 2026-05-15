@@ -44,8 +44,7 @@ def show_clusters_content(min_cluster=0, max_cluster=50):
     print('---------------------------------------------------------')
     print("Keywords selezionate per l'allenamento delle reti neurali")
     print('---------------------------------------------------------')
-    for keyword in classes_list:
-        print(f'{keyword} : {cluster_dict[keyword]}')
+    print(classes_list)
 
     print(f'numero di keyword selezionate per il training = {len(classes_list)}')
     print(f'numero di cluster = {len(cluster_dict)}')

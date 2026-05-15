@@ -111,7 +111,7 @@ def data_splitting(texts_file, label_file):
 
 def plot_training_history_f1score(history):
     """
-    Visualizza i grafici di Loss, Precision e Recall per monitorare il training.
+    Visualizza i grafici di Loss, Precision, Recall e F1-Score per monitorare il training.
     Args:
          history (history): history del training del modello.
     """

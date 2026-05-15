@@ -316,7 +316,7 @@ dopo aver eseguito lo script exploratory_data_analysis.py. Per ulteriori informa
 show_clusters.py
 ~~~~~~~~~~~~~~~~
 Questo script permette di stampare le keywords ottenute dopo il clustering e di vedere quali keyword sono state inserite nel cluster
-che corrisponde a quella keyword. Inoltre, vengono stampate le keywords selezionate per l'ellenamento dei modelli.
+che corrisponde a quella keyword. Inoltre, vengono stampate le keywords selezionate per l'allenamento dei modelli.
 
 .. image:: _static/terminale_show_clusters.PNG
    :alt: Esempio di utilizzo dello script da terminale.
