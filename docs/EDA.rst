@@ -7,7 +7,7 @@ che la rete dovrà essere in grado di ricostruire dal testo.
 Per prima cosa si contano le keywords uniche e si "puliscono" le stringhe delle keywords da elementi come trattini, underscore
 e i due punti. Successivamente si esegue un embedding utilizzando un modello pre-allenato di SentenceTransformer ("all-MiniLM-L6-v2").
 Questo modello vettorizza le parole in modo tale che parole simili siano rappresentate da vettori
-con un'alta cosine similarity, ovvero in modo tale che vettori di parole simili abbiano un piccolo coseno dell'angolo compreso tra essi.
+con un'alta cosine similarity, ovvero in modo tale che vettori di parole simili abbiano un piccolo angolo compreso tra essi.
 Successivamente è necessario normalizzare i vettori in output dal SentenceTransformer. Si fa questo perchè per ridurre il numero di keywords
 si esegue un algoritmo unsupervised di clustering. Per il clustering si utilizzano due algoritmi combinati: Birch e AgglomerativeClustering.
 L'algoritmo BIRCH utlizza la distanza euclidea tra due vettori per raggrupparli in cluster e i cluster creati dal BIRCH sono passati all'
@@ -28,7 +28,7 @@ Alla fine della funzione nella cartella data_new/processed è possibile trovare 
 delle keywords nel file new_keywords_map.json. Dei file di default sono contenuti nella cartella data/processed.
 
 Dopo lo script o la funzione exploratory_data_analysis deve essere sempre utilizzato lo script o la funzione keywords_binarization. Questo script contiene una funzione che binarizza le liste di keywords
-di ogni articolo. Per fare questo viene utilizzato un modulo di sklearn chiamato MultiLabelBinarizer che prende in ingresso la lista di keywords di ogni
+di ogni articolo. Per fare questo viene utilizzato un modulo di scikit-learn chiamato MultiLabelBinarizer che prende in ingresso la lista di keywords di ogni
 articolo e le binarizza trasformandole in liste di dimensione pari al numero di keywords totali. Queste liste avranno il valore '1' nella posizione corrispondente
 alle keywords della lista originale. Le liste così ottenute sono salvate in un file new_dataset_binary_labels.npy, così come le classi del binarizer nel file new_keyword_binary_classes.npy
 nella cartella data_new/processed. Dei file di default sono disponibili nella cartella data/processed.

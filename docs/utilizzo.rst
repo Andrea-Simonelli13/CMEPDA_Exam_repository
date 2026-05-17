@@ -138,8 +138,8 @@ Per ulteriori informazioni sugli argomenti da utilizzare consultare la sezione |
    :alt: Esempio di utilizzo della funzione in una sessione python.
    :align: center
 
-Predizioni dei modelli di default
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Predizioni dei modelli pre-allenati
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 In una sessione o in uno script python si deve utilizzare una delle 6 funzioni a seconda del tipo di modello e dello
 scopo. Per ottenere esempi di predizioni e le prestazioni dei modelli pre-allenati le funzioni sono: Dense_model_prediction(), 
 CNN_model_prediction() e LSTM_model_prediction(). Per ottenere le keywords su nuovi testi le funzioni da utilizzare sono:
@@ -209,7 +209,7 @@ o la funzione download_assets().
 
 Predizioni dei nuovi modelli
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Allo stesso modo dei modelli di default, si devono utilizzare 6 funzioni per ottenere le predizioni e le prestazioni dei modelli allenati
+Allo stesso modo dei modelli pre-allenati, si devono utilizzare 6 funzioni per ottenere le predizioni e le prestazioni dei modelli allenati
 con le funzioni della sezione Training. Per ottenere le predizioni sul dataset ottenuto dalle funzioni exploratory_data_analysis() e
 keywords_binarization(), si devono usare queste funzioni a seconda del modello: trained_Dense_model_prediction(), trained_CNN_model_prediction(),
 trained_LSTM_model_prediction().
