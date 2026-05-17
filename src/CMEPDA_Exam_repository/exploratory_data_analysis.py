@@ -123,17 +123,10 @@ def exploratory_data_analysis():
     unique_keywords = list(set(all_keywords))
     print("Keyword uniche:", len(unique_keywords))
 
-
-    # Counter conta quante volte appare ogni keyword
-    # crea un dizionario del tipo:
-    # {"dark matter": 1200, "supersymmetry": 850, ...}
-    #counter = Counter(all_keywords)
-
-
     #embedding
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(unique_keywords, show_progress_bar=True)
-    #l'embedding è eseguito guardando alla cosine similarity. keywords semanticamente simili vengono
+    #l'embedding è eseguito guardando alla cosine similarity. Keywords semanticamente simili vengono
     #vettorizzate in modo tale che l'angolo tra i vettori sia piccolo.
     #Questi vettori però hanno lunghezze diverse.
     #Il clustering utilizzato dopo utilizza la distanza euclidea.
@@ -149,7 +142,7 @@ def exploratory_data_analysis():
 
     #clustering
     clustering = Birch(
-        threshold=0.5,#0.5,
+        threshold=0.5,
         branching_factor=50,
         n_clusters=AgglomerativeClustering(n_clusters=None, distance_threshold=optimal_value)
         )
