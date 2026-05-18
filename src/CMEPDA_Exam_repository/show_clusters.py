@@ -8,7 +8,7 @@ import numpy as np
 
 from CMEPDA_Exam_repository import CMEPDA_EXAM_REPOSITORY_DATA_NEW
 
-def show_clusters_content(min_cluster=0, max_cluster=50):
+def show_clusters_content(min_cluster=0, max_cluster=10):
     '''Funzione che stampa il contenuto dei clusters e le keywords scelte
     per l'allenamento.
     Args:

@@ -34,6 +34,6 @@ alle keywords della lista originale. Le liste così ottenute sono salvate in un 
 nella cartella data_new/processed. Dei file di default sono disponibili nella cartella data/processed.
 Le classi serviranno a ricostruire le keywords. Le liste binarizzate serviranno come label per l'allenamento dei modelli.
 Per osservare le nuove keywords e il contenuto dei cluster è necessario l'utilizzo dello script show_clusters.py che contiene la funzione show_clusters_content(). Questa funzione prende come argomenti
-il primo e l'ultimo cluster che si vuole stampare. Di default è impostato l'intervallo [0,50]; solo se si utilizza direttamente la funzione è possibile modificare l'intervallo. Se viene lanciato lo script
+il primo e l'ultimo cluster che si vuole stampare. Di default è impostato l'intervallo [0,10]; solo se si utilizza direttamente la funzione è possibile modificare l'intervallo. Se viene lanciato lo script
 da terminale, saranno stampate le prime 50 kyewords rappresentative con la lista di keywords che fanno parte di quel cluster. Inoltre, vengono stampate le keywords selezionate per l'allenamento delle reti neurali.
 I clusters e la lista di keywords al loro interno è salvato nel file new_cluster_content.json nella cartella data_new/processed. Un file di default è salvato nella cartella data/processed. 
