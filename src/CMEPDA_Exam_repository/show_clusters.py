@@ -22,13 +22,17 @@ def show_clusters_content(min_cluster=0, max_cluster=10):
     classes_array = np.load(CMEPDA_EXAM_REPOSITORY_DATA_NEW / "processed/new_keyword_binary_classes.npy", allow_pickle=True)
     classes_list = classes_array.tolist()
     #creo un dizionario in cui le key corrispondono alla keyword rappresentativa del cluster
-    # e ad ongi key corrisponde la lista di keywords del cluster
+    # e ad ogni key corrisponde la lista di keywords del cluster
     cluster_dict = {}
     for original_keyword, cluster_keyword in map.items():
         if cluster_keyword not in cluster_dict:
             cluster_dict[cluster_keyword] = []
 
         cluster_dict[cluster_keyword].append(original_keyword)
+
+    if max_cluster > len(cluster_dict):
+        print(f'Attenzione: è stato impostato un max_cluster maggiore del numero di clusters verrà impostato il numero massimo di clusters.')
+        max_cluster = len(cluster_dict)
 
     #stampo i cluster da min_cluster a max_cluster con la sua keyword rappresentativa
     print('------------------------------------')
