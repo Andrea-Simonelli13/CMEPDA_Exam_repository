@@ -15,8 +15,7 @@ Prima di passare i testi al modello viene eseguita la vettorizzazione attraverso
 layer converte le stringhe di testo (titlo + abstract), in vettori contenenti numeri interi che corrispondo alle parole di un vocabolario
 costruito con tutti gli articoli utilizzati per il training dalle reti. La lunghezza degli output del TextVectorization è scelta osservando
 il grafico di distribuzione della lunghezza dei testi.
-Ogni modello conterrà un layer di tipo Embedding. Questo layer prende in ingresso i testi vettorizzati e per ogni parola crea dei vettori che riescono a cogliere l'aspetto semantico, parole
-simili saranno rappresentate da vettori simili.
+Ogni modello conterrà un layer di tipo Embedding. Questo layer prende in ingresso i testi vettorizzati e per ogni parola crea dei vettori che riescono a cogliere l'aspetto semantico.
 Il primo modello è un modello composto principalmente da layer di tipo Dense. Questo modello è formato da:
 
 - Embedding(input_dim=25001, output_dim=512)
@@ -48,9 +47,9 @@ a seconda della grandezza del kernel. Il modello convoluzionale è formato da:
 Il terzo e ultimo modello invece utilizza un layer di tipo LSTM (Long-Short Term Memory), la rete è quindi composta da:
 
 - Embedding(input_dim=25001, output_dim=512)
-- Bidirectional(LSTM(128, retun_sequences=True, dropout=0.2))
+- Bidirectional(LSTM(128, return_sequences=True, dropout=0.2))
 - LayerNormalization()
-- Bidirectional(LSTM(128, retun_sequences=True, dropout=0.2))
+- Bidirectional(LSTM(128, return_sequences=True, dropout=0.2))
 - LayerNormalization()
 - GlobalMaxPooling1D()
 - BatchNormalization()
