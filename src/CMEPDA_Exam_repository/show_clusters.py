@@ -31,7 +31,7 @@ def show_clusters_content(min_cluster=0, max_cluster=10):
         cluster_dict[cluster_keyword].append(original_keyword)
 
     if max_cluster > len(cluster_dict):
-        print(f'Attenzione: è stato impostato un max_cluster maggiore del numero di clusters verrà impostato il numero massimo di clusters.')
+        print('Attenzione: è stato impostato un max_cluster maggiore del numero di clusters verrà impostato il numero massimo di clusters.')
         max_cluster = len(cluster_dict)
 
     #stampo i cluster da min_cluster a max_cluster con la sua keyword rappresentativa
