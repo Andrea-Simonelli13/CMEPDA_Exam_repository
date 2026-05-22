@@ -27,8 +27,6 @@ def test_download_retry_mechanism(mock_open, mock_sleep, mock_get):
 
     # 2. Eseguiamo la funzione con parametri minimi per velocità
     # Usiamo un solo anno (se possibile) o limitiamo max_papers
-    # Nota: se la tua funzione ha il range(1991, 2025) fisso,
-    # il test proverà a fare il download per tutti gli anni.
     # Mockiamo il range o la durata per il test.
     with patch('CMEPDA_Exam_repository.raw_final_dataset.range') as mock_range: # Testa solo l'anno 2024
         mock_range.side_effect = [[2024], range(3), range(3), range(3)]

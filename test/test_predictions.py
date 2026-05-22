@@ -41,7 +41,7 @@ def test_prediction_edge_cases(mock_file, mock_split, mock_np_load, mock_pickle,
     # o un abstract irrilevante per la fisica
     mock_split.return_value = (
         None, None, [""] * 30, # X_train, X_val, X_test (abstract vuoto)
-        np.array([[0, 0]]), # y_train (non usato nel corpo ma richiesto per la shape)
+        np.array([[0, 0]]), # y_train
         np.array([[0, 0]]), # y_val
         np.array([[0, 0]] * 30), # y_test
         [], [], [""] * 30        # orig_test

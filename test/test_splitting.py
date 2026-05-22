@@ -22,7 +22,6 @@ def test_data_splitting_integrity(mock_file, mock_np_load, mock_plt):
     mock_np_load.return_value = fake_labels
 
     # 2. Eseguiamo lo split
-    # (Assumendo che la tua funzione accetti path e restituisca i 6 array classici)
     X_train, X_val, X_test, y_train, y_val, y_test = data_splitting("dummy_path", "dummy_path")
 
     # 3. ASSERZIONI
